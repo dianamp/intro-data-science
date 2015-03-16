@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction to Data Science - GDI Boulder</title>
+
+		<meta name="description" content="A workshop introducing Data Science for GDI Boulder">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+	<section>
+	  <h1>Introduction to Data Science</h1>
+	  <h4>Sara Bates & Diana Pfeil</h4>
+	  <h4>March 2015</h4>
+	</section>
+
+	<section>
+	  <h2>Intro to us</h2>
+	</section>
+
+	<section>
+	  What is data science?
+	  Venn diagram http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram    
+	</section>
+
+	<section>
+	  Why is data science important?
+	  “The sexiest job of the century” quote
+	  https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
+	  Content: People are saving their data, computing power, scarcity issue, big demand because applicable to every industry, super fun
+	</section>
+
+	<section>
+	  <h2>Big Data</h2>
+	  Definition: when you have more data than can be worked with on your laptop
+	  Implications: distributed systems, distributed databases, map reduce
+	</section>
+
+	<section>
+	  What do data scientists do? Aka agenda:
+	  Exploratory data analysis
+	  predictive analytics and machine learning
+	  A/B testing, etc
+	  Data communication and visualization
+	</section>
+
+	<section>
+	  <h1>Exploratory data analysis</h1>
+	</section>
+
+	<section>
+	  You’ve got a bunch of data. Now what? What do you do with it? Where do you start?
+	  Data formats:
+	  excel, csv, 
+	  Databases
+	  SQL, noSQL, distributed
+	  Example Data:
+	  Issues: typos, missing data, redundant data, format issues, outliers
+	  Small group discussion
+	  Exploring the Data
+	  Summary statistics
+	  Visualization (chats, graphs)
+	  Discuss with data provider
+	</section>
+
+	<section>
+	  <h1>Predictive analytics and machine learning</h1>
+	</section>
+
+	<section>
+	  You’d like to predict whether customer activity is fraudulent. What are the steps?
+	  Definitions
+	  Supervised learning, unsupervised learning, statistical modeling, descriptive, predictive, and prescriptive analytics
+	  The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
+	  http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
+	  We’ll focus on supervised learning
+	  y vector of what we’re predicting, x vector of features
+	  categorical, metric, ordinal
+	  y can be categorical (classification) or numeric (regression)
+	  Introduce a running example TODO: high priority!
+	  Picking a model
+	  List a bunch of models
+	  Model we chose for this data set
+	  Training
+	  Feature engineering
+	  Feature selection
+	  training and test set
+	  cross validation for parameter tuning
+	  overfitting
+	  Results for example
+	</section>
+
+	<section>
+	  <h1>A/B testing</h1>
+	</section>
+
+	<section>
+	  Your company is trying to increase click-through rates, and is trying to determine if a red banner drives more clicks than a blue one. How is this done?
+	  Now you have a prediction, how to test?
+	  framing testing with example
+	  What is A/B testing and why would you need it?
+	  EVERYONE uses A/B testing
+	  examples: Amazon, etc
+	  Types/models for A/B testing
+	  one-armed bandit (epsilon, bayesian bandit)
+	  interactive chart (evan miller blog?)
+	  What NOT to do (evan miller)
+	  don’t stop early
+	</section>
+
+	<section>
+	  <h1>Data communication and visualization</h1>
+	</section>
+
+	<section>
+	  Communication is critical for data science
+	  Must be able to communicate a model to a customer/non-technical team
+	  If the model does not get used/implemented, it does not add value
+	  Tip 1: start simple, super simple, maintainability
+	  CEO should be able to understand it (at a high level)
+	  Tip 2: Translate model results into business value, ROI, etc.
+	  Tip 3: Create great charts Visualization - the basics
+	</section>	  
+
+	<section>
+	  <h2>Our recommended toolset</h2>
+	  <h3 style="color:magenta">This is our opinion!</h3>
+	  <ul>
+	    <li>Python with pandas, numpy, scipy</li>
+	    <li>Unix utilities</li>
+	    <li>Don’t use windows</li>
+	  </ul>
+	  <p>Note to Sara: I'm thinking of scrapping this slide, seems negative</p>
+	</section>
+	
+	<section>
+	  <h2>Resources for becoming a data scientist</h2>
+	  <ul>
+	    <li>Programming<br>
+	      Intro to Python GDI class </li>
+	    <li>Statistics / machine learning / math <br>
+	      Coursera</li>
+	    <li>Domain knowledge<br>
+	      Think, talk to people, be proactive, learn as you go</li>
+	  </ul>
+	</section>
+
+	<section>
+	  <h2>Bonus Material</h2>
+	  <ul>
+	    <li>Hadoop, Map Reduce</li>
+	    <li>Specific learning algorithms: support vector machine, naive bayes, decision tree (classification tree, regression tree), random forest, neural nets, regression (linear, lasso, ridge), logistic regression, recommender systems (collaborative filtering), nearest neighbor, boosting</li>
+	    <li>Clustering</li>
+	    <li>Imbalanced datasets</li>
+	  </ul>
+	</section>
+	  
+        <section>
+	  <p> The next slides are some examples, and we can delete them once we finish the presentation.</p>
+	</section>
+
+	<section>
+	  <p>This shows how to use math font</p>
+	  <p>Inline math typing looks like this: $\sum_x c_ix_i$</p>
+          <p>And math typing can be placed on a separate line like this:</p>
+	  <p>
+               $$\frac{1}{n}\sqrt{e^\frac{1}{n} - e^\frac{1}{n+1}}\sim\frac{1}{n^2}$$
+          </p>
+         </section>
+
+	<section>
+	  <h2>Example bullets</h2>
+	  <ul>
+	    <li>Lambda Expressions</li>
+	    <li>Default Methods / Functional Interface</li>
+	    <li>Streams</li>
+	  </ul>
+	</section>
+
+	<section>
+	  <h2>Example with Code</h2>
+	  <pre><code data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
+  }
+}
+	  </code></pre>
+	  <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+	</section>
+
+	<section>
+	  <h2>Fantastic Ordered List</h2>
+	  <ol>
+	    <li>One is smaller than...</li>
+	    <li>Two is smaller than...</li>
+	    <li>Three!</li>
+	  </ol>
+	</section>
+	
+	<section>
+	  <h2>Tabular Tables</h2>
+	  <table>
+	    <thead>
+	      <tr>
+		<th>Item</th>
+		<th>Value</th>
+		<th>Quantity</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>Apples</td>
+		<td>$1</td>
+		<td>7</td>
+	      <tr>
+	      <tr>
+		<td>Lemonade</td>
+		<td>$2</td>
+		<td>18</td>
+	      <tr>
+	      <tr>
+		<td>Bread</td>
+		<td>$3</td>
+		<td>2</td>
+	      <tr>
+	    </tbody>
+	  </table>
+	</section>
+	
+	<section>
+	  <h2>Clever Quotes</h2>
+	  <p>
+	    These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+	      &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
+	  </p>
+	  <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+	    &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+	    reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+	  </blockquote>
+	</section>
+	
+	<section>
+	  <h2>Speaker View</h2>
+	  <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+	  <p>Press the <em>S</em> key to try it out.</p>
+	  
+	  <aside class="notes">
+	    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+	  </aside>
+	</section>
+	
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
