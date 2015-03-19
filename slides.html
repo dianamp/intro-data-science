@@ -81,19 +81,47 @@
 	</section>
 
 	<section>
-	  You’ve got a bunch of data. Now what? What do you do with it? Where do you start?
-	  Data formats:
-	  excel, csv, 
-	  Databases
-	  SQL, noSQL, distributed
-	  Example Data:
-	  Issues: typos, missing data, redundant data, format issues, outliers
-	  Small group discussion
-	  Exploring the Data
-	  Summary statistics
-	  Visualization (chats, graphs)
-	  Discuss with data provider
+	  Data formats
+	  <p> screen shot? </p>
+	  <aside class="notes">
+	    Let's start with the data.  There are a number of different formats your data can be in.  These include the ever-present excel spreadsheet, a csv (comma-separated values) file, a tsv (tab-separated values) file, JSON, and more.
+	  </aside>
 	</section>
+
+	<section>
+	  Databases:
+	  Relational, noSQL, distributed, graph, in-memory
+	  <aside class="notes">
+	    The format of your data might depend on its source.  There are many different types of databases.  One common type is a relational database, which focuses on the relationships between the data.  Examples include mySQL, SQL Server, MS Access, PostgreSQL.  This type of database requires normalization, which means that different related tables are joined (linked) so that there is no redundancy.  While this helps with data integrity, it can make the database requests slow.  An alternative would be a noSQL database, such as MongoDB, Redis, Apache Cassandra, HBase.  They do not require normalized data and therefore are known for being very fast.
+	  </aside>
+	</section>
+	<section>
+		Dataframes:
+		samples pandas code to load in data and describe
+		<aside class="notes">
+			No matter what type of data format you're working with, you can load it into a dataframe.  Both R and the python package pandas have this type of data structure, which is pretty much a table.  You have rows, and columns and headers, like your data has.  Here's an example of a pandas data frame.  Pandas also comes with built-in functions to describe your data.
+		</aside>
+	</section>
+	<section>
+		Plotting
+		plot
+		<aside class="notes">
+			Another way to explore your data is through plots.  There are some things that may be hard to see from summary statistics, but very obvious from a graph, like outliers and seasonality.  Matplotlib is a python package for plotting data.
+		</aside>
+	</section>
+	<section>
+	  Data Issues: typos, missing data, redundant data, format issues, outliers
+	  <aside class="notes">
+		  While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
+	</section>
+	<section>
+	  Example Data:
+	  Small group discussion
+	  <aside class="notes">
+	  		Now we're going to do a little small group exercise.  You can work with the person next to you.  Here is an example of some data with issues.  We'll give you about 5 minutes to look at it and come up with some issues that you can see.
+	  </aside>
+	</section>
+
 
 	<section>
 	  <h1>Predictive analytics and machine learning</h1>
@@ -163,6 +191,7 @@
 	    <li>Don’t use windows</li>
 	  </ul>
 	  <p>Note to Sara: I'm thinking of scrapping this slide, seems negative</p>
+	  <p>We could scrap, or just discuss commonly used tools (python, R, excel) and pros/cons?</p>
 	</section>
 	
 	<section>
