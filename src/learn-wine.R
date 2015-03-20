@@ -8,8 +8,6 @@ wine$quality <- factor(wine$quality)
 
 summary(wine)
 
-source("C:/workspace/SendGrid/src/setup.R");
-
 # create training/test set
 require('caret')
 set.seed(991)
@@ -79,32 +77,9 @@ rfdownSpec <- train(high_quality ~ ., data = training,
 pred_class <- predict(rfdownSpec, newdata=testData, type="raw")
 confusionMatrix(pred_class, truth_class)
 
-for (i in 1:length(truth_class)) {
-  if (pred_class[i] == "Churned" && truth_class[i] == pred_class[i])
-    print(testSs$account[i])
-}
-
-set.seed(2)
 rfUnbalanced <- train(status ~ ., data = training,
                       method = "rf",
                       ntree = 1500,
                       tuneLength = 5,
                       metric = "ROC",
                       trControl = ctrl)
-
-results <- testData
-results$truth <- results$Status
-results$pred <- pred_class
-results$prob_churn <-pred_prob[,2]
-J <- which(results$truth == "Churned" | results$pred == "Churned")
-results[J,]
-resultsJ <- results[J,]
-
-# feature selection
-require(entropy)
-for (i in 2:length(data)) {
-  disc=discretize2d(data[,1], data[,i], numBins1=2, numBins2=16)
-  mutualInfo=mi.empirical(disc)
-}
-disc=discretize2d(data$AxialDistance, data$d0, numBins1=16, numBins2=16)
-
