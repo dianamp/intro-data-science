@@ -151,7 +151,55 @@
 	</section>
 
 	<section>
-	  <h1>A/B testing</h1>
+	  <h1>Testing and Experimentation</h1>
+	</section>
+	<section>
+		<blockquote cite="https://hbr.org/2014/02/ab-testing-and-the-benefits-of-an-experimentation-culture/">
+	    	&ldquo;Modern tech companies have figured out that data is their product. Whether you sell a service, a product, or content, what you really do is create value for your customer base — and every interaction with your product is a measurable amount of value. But the best data-driven companies don’t just passively store and analyze data, they actively generate actionable data by running experiments. The secret to getting value from data is testing, and if you’re looking to grow your online business, implementing well-executed, consistent A/B testing is a necessity.&rdquo;
+	  </blockquote>
+	  <aside class="notes">
+	  		Another important area of data science is experimentation and testing.  This could be done in order to gather the data that you will use to model, or it could be done to test the predictions that your model output.  Or it could be done instead of creating a model.  Here's a quote from a HBR article from last year, that emphasizes the importance of testing, specifically A/B testing.
+	  </aside>
+	</section>
+	<section>
+		What is A/B testing?
+		<br><br>
+		<button>Try now!</button><br>
+		VS. <br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button>
+		<aside class="notes">
+			So what is A/B testing?  A/B testing is an experiementation technique where you show some customers one thing (version A) and other customers another (version B).  It's commonly used in web analytics, where a company would show some percentage of the visitors to its website one layout or color scheme or ad, and others a slightly different one.  You typically want to keep the rest of the content the same, so that you can attribute the difference in click-throughs to the the change you're testing.
+		</aside>
+	</section>
+	<section>
+		What NOT to do
+		<aside class="notes">
+			One of the most important things to keep in mind when A/B testing is when to stop.  Generally, you want to stop testing when you reach a certain level of statistical significance.  However, this should be calculated beforehand.  Often people "peek" at their current significance, and stop when they reach a certain level.  However, this might be influenced by a current streak, for example, so it would be misleading.  So, you should calculate your sample size, based on your desired level of significance, beforehand and do not stop early.
+		</aside>
+	</section>
+	<section>
+		Multi-Armed Bandit
+		<br>
+		<img src="http://www.residentialgolflessons.com/multimedia/gallery/3799_mills-golden-nugget-bandit.jpg">
+		<aside class="notes">
+			One common situation that's related to A/B testing is the multi-armed bandit problem.  The name comes from the idea of a slot machine or "one-armed bandit" having two arms to pull.  You may have some hypothesis of which arm would have the bigger reward, but you need to come up with a strategy that effectively tests your theory and also maximizes the reward.  So in terms of A/B testing in online ads, you would want to choose the perecentage of website visitors to show each ad that provides enough data to give confidence to your findings but also maximize click-throughs in the process.
+
+			There are a number of different strategies you can take here.  The simpliest is called epsilon-greedy, which assigns a fixed percentage (say 90%) of the visitors to the ad that is expected to have the higher reward.  But in order to gain more information about the other ad, you may consider a probability matching strategy, such as the Bayesian bandit strategy.  You can use Bayes Theorem to come up with a 
+		</aside>
+	</section>
+	<section>
+		Multivariate Testing
+		<br><br>
+		<button>Try now!</button><br>
+		VS.<br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button><br>
+		VS. <br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Try now!</button><br>
+		VS.<br>
+		<button style="font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button><br>
+		<aside class="notes">
+			An alternative to A/B testing is multivariate testing.  As the name suggests, multivariate testing tests multiple variables at the same time.  You can use a full factorial method, which would test every combination of the changes, or a partial factorial method, which would only test a fraction of the combinations and infer the rest.  While you can learn more about the effectiveness of each variable, the testing is more complex and requires more data (visitors) than A/B testing, which is sometimes not worth the effort.
+		</aside>
 	</section>
 
 	<section>
