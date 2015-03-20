@@ -55,12 +55,29 @@
 	  <img src="images/Data_Science_VD.png"/>
 	  <small>Source: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram</small>
 	</section>
+	
+	<section>
+	  <blockquote>
+	    ...data scientists [need] to <span style="color:magenta">communicate</span> in language that all their stakeholders understand—and to demonstrate the special skills involved in <span style="color:magenta">storytelling with data</span>, whether verbally, visually, or — ideally — both.
+	  </blockquote>
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
+	</section>
 
 	<section>
-	  Why is data science important?
-	  “The sexiest job of the century” quote
-	  https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
+	  <blockquote>
+	    ...the dominant trait among data scientists is an <span style="color:magenta">intense curiosity</span> — a desire to go beneath the surface of a problem, find the questions at its heart, and distill them into a very clear set of hypotheses that can be tested. 
+	  </blockquote>
+
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
 	  <aside class="notes">
+	    data scientist skills: comminication and curiosity 
+	  </aside>
+	</section>
+
+	<section>
+	  <h1>Why is data science "The Sexist Job of the 21st Century"?</h1>
+	  <aside class="notes">
+	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
 	    People are saving their data
 	    computing power
 	    scarcity issue beacuse the field is new
@@ -70,7 +87,7 @@
 	</section>
 
 	<section>
-	  <h1>Big Data</h1>
+	  <h1>What is Big Data?</h1>
 	  <p>Implications: distributed systems, distributed databases, map reduce</p>
 	  <aside class="notes">
 	    Definition: when you have more data than can be worked with on your laptop
@@ -106,24 +123,84 @@
 	  Discuss with data provider
 	</section>
 
-	<section>
-	  <h1>Predictive analytics and machine learning</h1>
+	<section data-background="#40E0D0">
+	  <h1>Predictive Analytics and Machine Learning</h1>
 	</section>
 
 	<section>
-	  You’d like to predict whether customer activity is fraudulent. What are the steps?
-	  Definitions
-	  Supervised learning, unsupervised learning, statistical modeling, descriptive, predictive, and prescriptive analytics
-	  The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
-	  http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
-	  We’ll focus on supervised learning
-	  y vector of what we’re predicting, x vector of features
-	  categorical, metric, ordinal
-	  y can be categorical (classification) or numeric (regression)
-	  Introduce a running example TODO: high priority!
+	  <h2 style="color:teal">Supervised learning</h2>
+	  <h2 style="color:teal">Unsupervised learning</h2>
+	  <h2 style="color:lightcoral">Statistical Modeling</h2>
+	  <h2 style="color:purple">Descriptive, Predictive, and Prescriptive Analytics</h2>
+	  <aside class="notes">
+	    The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
+	    Source: http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Supervised Learning</h2>
+	  
+	  <table class="center-col1" style="width:100%">
+	    <tr>
+	      <td>$x^i$</td>
+	      <td>features (input variables)</td>
+	    </tr>
+	    <tr>
+	      <td>$y^i$</td>
+	      <td>target (output variable)</td>
+	    </tr>
+	    <tr>
+	      <td> $ (x^i, y^i), i=1,\ldots,m $ </td>
+	      <td>training set</td>
+	    </tr>
+	  </table> 
+	  <br>
+	  <p class="fragment" style="background-color:lavender">Goal: learn a function
+	    $$h : \mathcal{X} \rightarrow \mathcal{Y}$$ 
+	    such that $h(x)$ is a good predictor of $y$ on <b>new</b> data<p>
+	</section>
+
+	<section>
+	  <h2> TODO: wine dataset</h2>
+	</section>
+
+	<section>
+	  <p>features $x$ can be
+	  <ul>
+	    <li>metric</li>
+	    <li>ordinal</li>
+	    <li>categorical/nominal</li>
+	  </ul>
+	  </p>
+	  <span class="fragment">
+	  <p>target $y$ can be</p>
+	  <ul>
+	    <li>continuous (regression)</li>
+	    <li>categorical (classification)</li>
+	  </ul>
+	  </span>
+	</section>
+
+	<section>
+	  diagram of supervised learning
+	</section>
+	  
+	<section>
+	  <h1>Back to wine...</h1>
+	</section>
+
+	<section>
+	  <h2>We have our goal...now what?</h2>
+	</section>
+
+	<section>
 	  Picking a model
-	  List a bunch of models
+	  List a bunch of models	  
 	  Model we chose for this data set
+	</section>
+
+	<section>
 	  Training
 	  Feature engineering
 	  Feature selection
@@ -527,7 +604,7 @@ function linkify( selector ) {
 				progress: true,
 				history: true,
 				center: true,
-
+			        fragments: true,
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
