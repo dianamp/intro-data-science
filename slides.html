@@ -51,29 +51,57 @@
 	</section>
 
 	<section>
-	  What is data science?
-	  Venn diagram http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram    
+	  <h2>What is data science?</h2>
+	  <img src="images/Data_Science_VD.png"/>
+	  <small>Source: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram</small>
+	</section>
+	
+	<section>
+	  <blockquote>
+	    ...data scientists [need] to <span style="color:magenta">communicate</span> in language that all their stakeholders understand—and to demonstrate the special skills involved in <span style="color:magenta">storytelling with data</span>, whether verbally, visually, or — ideally — both.
+	  </blockquote>
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
 	</section>
 
 	<section>
-	  Why is data science important?
-	  “The sexiest job of the century” quote
-	  https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
-	  Content: People are saving their data, computing power, scarcity issue, big demand because applicable to every industry, super fun
+	  <blockquote>
+	    ...the dominant trait among data scientists is an <span style="color:magenta">intense curiosity</span> — a desire to go beneath the surface of a problem, find the questions at its heart, and distill them into a very clear set of hypotheses that can be tested. 
+	  </blockquote>
+
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
+	  <aside class="notes">
+	    data scientist skills: comminication and curiosity 
+	  </aside>
 	</section>
 
 	<section>
-	  <h2>Big Data</h2>
-	  Definition: when you have more data than can be worked with on your laptop
-	  Implications: distributed systems, distributed databases, map reduce
+	  <h1>Why is data science "The Sexist Job of the 21st Century"?</h1>
+	  <aside class="notes">
+	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
+	    People are saving their data
+	    computing power
+	    scarcity issue beacuse the field is new
+	    big demand because applicable to every industry
+	    fun
+	  </aside>
 	</section>
 
 	<section>
-	  What do data scientists do? Aka agenda:
-	  Exploratory data analysis
-	  predictive analytics and machine learning
-	  A/B testing, etc
-	  Data communication and visualization
+	  <h1>What is Big Data?</h1>
+	  <p>Implications: distributed systems, distributed databases, map reduce</p>
+	  <aside class="notes">
+	    Definition: when you have more data than can be worked with on your laptop
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>What do data scientists do?</h2>
+	  <ul>
+	    <li>Exploratory data analysis</li>
+	    <li>predictive analytics and machine learning</li>
+	    <li>A/B testing, etc</li>
+	    <li>Data communication and visualization</li>
+	  </ul>
 	</section>
 
 	<section>
@@ -122,25 +150,84 @@
 	  </aside>
 	</section>
 
-
-	<section>
-	  <h1>Predictive analytics and machine learning</h1>
+	<section data-background="#40E0D0">
+	  <h1>Predictive Analytics and Machine Learning</h1>
 	</section>
 
 	<section>
-	  You’d like to predict whether customer activity is fraudulent. What are the steps?
-	  Definitions
-	  Supervised learning, unsupervised learning, statistical modeling, descriptive, predictive, and prescriptive analytics
-	  The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
-	  http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
-	  We’ll focus on supervised learning
-	  y vector of what we’re predicting, x vector of features
-	  categorical, metric, ordinal
-	  y can be categorical (classification) or numeric (regression)
-	  Introduce a running example TODO: high priority!
+	  <h2 style="color:teal">Supervised learning</h2>
+	  <h2 style="color:teal">Unsupervised learning</h2>
+	  <h2 style="color:lightcoral">Statistical Modeling</h2>
+	  <h2 style="color:purple">Descriptive, Predictive, and Prescriptive Analytics</h2>
+	  <aside class="notes">
+	    The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
+	    Source: http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Supervised Learning</h2>
+	  
+	  <table class="center-col1" style="width:100%">
+	    <tr>
+	      <td>$x^i$</td>
+	      <td>features (input variables)</td>
+	    </tr>
+	    <tr>
+	      <td>$y^i$</td>
+	      <td>target (output variable)</td>
+	    </tr>
+	    <tr>
+	      <td> $ (x^i, y^i), i=1,\ldots,m $ </td>
+	      <td>training set</td>
+	    </tr>
+	  </table> 
+	  <br>
+	  <p class="fragment" style="background-color:lavender">Goal: learn a function
+	    $$h : \mathcal{X} \rightarrow \mathcal{Y}$$ 
+	    such that $h(x)$ is a good predictor of $y$ on <b>new</b> data<p>
+	</section>
+
+	<section>
+	  <h2> TODO: wine dataset</h2>
+	</section>
+
+	<section>
+	  <p>features $x$ can be
+	  <ul>
+	    <li>metric</li>
+	    <li>ordinal</li>
+	    <li>categorical/nominal</li>
+	  </ul>
+	  </p>
+	  <span class="fragment">
+	  <p>target $y$ can be</p>
+	  <ul>
+	    <li>continuous (regression)</li>
+	    <li>categorical (classification)</li>
+	  </ul>
+	  </span>
+	</section>
+
+	<section>
+	  diagram of supervised learning
+	</section>
+	  
+	<section>
+	  <h1>Back to wine...</h1>
+	</section>
+
+	<section>
+	  <h2>We have our goal...now what?</h2>
+	</section>
+
+	<section>
 	  Picking a model
-	  List a bunch of models
+	  List a bunch of models	  
 	  Model we chose for this data set
+	</section>
+
+	<section>
 	  Training
 	  Feature engineering
 	  Feature selection
@@ -217,18 +304,227 @@
 	</section>
 
 	<section>
-	  <h1>Data communication and visualization</h1>
+	  <h1>Data Communication and Visualization</h1>
 	</section>
 
 	<section>
-	  Communication is critical for data science
-	  Must be able to communicate a model to a customer/non-technical team
-	  If the model does not get used/implemented, it does not add value
-	  Tip 1: start simple, super simple, maintainability
-	  CEO should be able to understand it (at a high level)
-	  Tip 2: Translate model results into business value, ROI, etc.
-	  Tip 3: Create great charts Visualization - the basics
-	</section>	  
+	  <h1>Simplify</h1>
+	  <h3>models, explanations, visuals</h3
+	  <aside class="notes">
+	    Communication is critical for data science
+	    Must be able to communicate a model to a customer/non-technical team
+	    If the model does not get used/implemented, it does not add value
+	  </aside>
+	</section>
+	
+	<section>
+	  <h2>Beware of model complexity</h2>
+	  <p>You must be able to explain your model to the CEO</p>
+	  <p>If the model does not get used/implemented, it does not add value</p>
+	</section>
+
+	<section>
+	  <h2>Translate model results into business value/ROI</h2>
+	</section>
+
+	<section>
+	  <h1>Create Great Charts</h1>
+	</section>
+
+	<section>
+	  <blockquote cite="Edward Tufte, the Visual Display of Quantitative Information">Often the most effective way to describe, explore, and summarize a set of numbers - even a very large set - is to look at a picture of those numbers.</blockquote>
+	  -Edward Tufte
+	  The Visual Display of Quantitative Information
+	</section>
+
+	<section>
+	  <table>
+	    <thead>
+	      <tr align="right">
+		<th scope="col" colspan="2">1</th>
+		<th scope="col" colspan="2">2</th>
+		<th scope="col" colspan="2">3</th>
+		<th scope="col" colspan="2">4</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+	      <tr>
+	      <tr>
+		<td>10</td>
+		<td>8.04</td>
+		<td>10</td>
+		<td>9.14</td>
+		<td>10</td>
+		<td>7.46</td>
+		<td>8</td>
+		<td>6.58</td>
+	      <tr>
+	      <tr>
+		<td>8</td>
+		<td>6.95</td>
+		<td>8</td>
+		<td>8.14</td>
+		<td>8</td>
+		<td>6.77</td>
+		<td>8</td>
+		<td>5.76</td>
+	      <tr>
+	      <tr>
+		<td>13</td>
+		<td>7.58</td>
+		<td>13</td>
+		<td>8.74</td>
+		<td>13</td>
+		<td>12.74</td>
+		<td>8</td>
+		<td>7.71</td>
+	      <tr>
+	      <tr>
+		<td>9</td>
+		<td>8.81</td>
+		<td>9</td>
+		<td>8.77</td>
+		<td>9</td>
+		<td>7.11</td>
+		<td>8</td>
+		<td>8.84</td>
+	      <tr>
+	      <tr>
+		<td>11</td>
+		<td>8.33</td>
+		<td>11</td>
+		<td>9.26</td>
+		<td>11</td>
+		<td>7.81</td>
+		<td>8</td>
+		<td>8.47</td>
+	      <tr>
+	      <tr>
+		<td>14</td>
+		<td>9.96</td>
+		<td>14</td>
+		<td>8.10</td>
+		<td>14</td>
+		<td>8.84</td>
+		<td>8</td>
+		<td>7.04</td>
+	      <tr>
+              <tr>
+                <td>6</td>
+                <td>7.24</td>
+                <td>6</td>
+                <td>6.13</td>
+                <td>6</td>
+                <td>6.08</td>
+                <td>8</td>
+                <td>5.25</td>
+              <tr>
+              <tr>
+                <td>4</td>
+                <td>4.26</td>
+                <td>4</td>
+                <td>3.1</td>
+                <td>4</td>
+                <td>5.39</td>
+                <td>19</td>
+                <td>12.5</td>
+              <tr>
+              <tr>
+                <td>12</td>
+                <td>10.84</td>
+                <td>12</td>
+                <td>9.13</td>
+                <td>12</td>
+                <td>8.15</td>
+                <td>8</td>
+                <td>5.56</td>
+              <tr>
+              <tr>
+                <td>7</td>
+                <td>4.82</td>
+                <td>7</td>
+                <td>7.26</td>
+                <td>7</td>
+                <td>6.42</td>
+                <td>8</td>
+                <td>7.91</td>
+              <tr>
+              <tr>
+                <td>5</td>
+                <td>5.68</td>
+                <td>5</td>
+                <td>4.74</td>
+                <td>5</td>
+                <td>5.73</td>
+                <td>8</td>
+                <td>6.89</td>
+              <tr>
+	    </tbody>
+	  </table>	  
+	</section>
+
+	<section>
+	  <img src="images/ambscombe_3.svg"/>
+	</section>
+
+	<section>
+	  <h1>Principles of Data Visualization</h1>
+	</section>
+
+	<section>
+	  <h1>Above all else, show the data</h1>
+	  <h2>Draw attention to the data, not the visualization<h2>
+	</section>
+	
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <h1>Use a minimum of ink</h1>
+	  <p>Erase non-data-ink (within reason)</p>
+	  <p>Erase redundant data-ink (within reason)</p>
+	  <p>Forego chartjunk - interior decoration of graphics</p>
+	</section>
+
+	<section>
+	  <h2>TODO:example</h2>
+	</section>
+
+	<section>
+	  <h2>TODO: small multiples</h2>
+	</section>
+
+	<section>
+	  <h1>Avoid creating graphical puzzles</h1>
+	</section>
+
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <h1>Do not distort the data</h1>
+	  <p>Visual representation should be consistent with the numerical representation</p>
+	</section>
+
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <blockquote>Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space.</blockquote>
+	  -Edward Tufte
+	</section>
 
 	<section>
 	  <h2>Our recommended toolset</h2>
@@ -384,7 +680,7 @@ function linkify( selector ) {
 				progress: true,
 				history: true,
 				center: true,
-
+			        fragments: true,
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins

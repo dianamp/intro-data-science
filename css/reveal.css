@@ -160,6 +160,7 @@ body {
   -moz-box-sizing: border-box;
        box-sizing: border-box; }
 
+.reveal p { text-align: left; }
 /*********************************************
  * CONTROLS
  *********************************************/
@@ -1046,9 +1047,16 @@ body {
   border: 1px solid #fff;
   vertical-align: middle; }
 
-.reveal .overlay.overlay-help .viewport .viewport-inner table th {
+.reveal table th td {
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px; 
+  border-bottom: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.center-col1 tbody td { text-align: right }
+.center-col1 tbody td:first-child { text-align: center }
 
 /*********************************************
  * PLAYBACK COMPONENT
