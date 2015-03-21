@@ -67,7 +67,6 @@
 	  <blockquote>
 	    ...the dominant trait among data scientists is an <span style="color:magenta">intense curiosity</span> — a desire to go beneath the surface of a problem, find the questions at its heart, and distill them into a very clear set of hypotheses that can be tested. 
 	  </blockquote>
-
 	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
 	  <aside class="notes">
 	    data scientist skills: comminication and curiosity 
@@ -75,19 +74,21 @@
 	</section>
 
 	<section>
-	  <h1>Why is data science "The Sexist Job of the 21st Century"?</h1>
+	  <h2>Why is data scientist &ldquo;The Sexiest Job of the 21st Century&rdquo;?</h2>
 	  <aside class="notes">
-	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
-	    People are saving their data
-	    computing power
-	    scarcity issue beacuse the field is new
-	    big demand because applicable to every industry
-	    fun
+	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/<br>
+	    <ul>
+	    	<li>People are saving their data</li>
+	    	<li>computing power</li>
+	    	<li>scarcity issue beacuse the field is new</li>
+	 	   	<li>big demand because applicable to every industry</li>
+	    	<li>fun</li>
+	    </ul>
 	  </aside>
 	</section>
 
 	<section>
-	  <h1>What is Big Data?</h1>
+	  <h2>What is Big Data?</h2>
 	  <p>Implications: distributed systems, distributed databases, map reduce</p>
 	  <aside class="notes">
 	    Definition: when you have more data than can be worked with on your laptop
@@ -98,8 +99,8 @@
 	  <h2>What do data scientists do?</h2>
 	  <ul>
 	    <li>Exploratory data analysis</li>
-	    <li>predictive analytics and machine learning</li>
-	    <li>A/B testing, etc</li>
+	    <li>Predictive analytics and machine learning</li>
+	    <li>Testing and experiementation</li>
 	    <li>Data communication and visualization</li>
 	  </ul>
 	</section>
@@ -115,50 +116,82 @@
 	  </ul>
 	</section>
 
-	<section>
-	  <h1>Exploratory data analysis</h1>
+	<section data-background="#40E0D0">
+	  <h1>Exploratory Data Analysis</h1>
 	</section>
 
 	<section>
-	  Data formats
-	  <p> screen shot? </p>
+	  <h2>Data formats</h2>
+	  <img src="images/csv_format.png"/>
 	  <aside class="notes">
 	    Let's start with the data.  There are a number of different formats your data can be in.  These include the ever-present excel spreadsheet, a csv (comma-separated values) file, a tsv (tab-separated values) file, JSON, and more.
 	  </aside>
 	</section>
 
 	<section>
-	  Databases:
-	  Relational, noSQL, distributed, graph, in-memory
+	  <h2>Databases</h2>
+	  <img src="images/wordle.png"/>
 	  <aside class="notes">
 	    The format of your data might depend on its source.  There are many different types of databases.  One common type is a relational database, which focuses on the relationships between the data.  Examples include mySQL, SQL Server, MS Access, PostgreSQL.  This type of database requires normalization, which means that different related tables are joined (linked) so that there is no redundancy.  While this helps with data integrity, it can make the database requests slow.  An alternative would be a noSQL database, such as MongoDB, Redis, Apache Cassandra, HBase.  They do not require normalized data and therefore are known for being very fast.
 	  </aside>
 	</section>
+
 	<section>
-		Dataframes:
-		samples pandas code to load in data and describe
+		<h2>Dataframes</h2>
+			<pre><code data-trim contenteditable>
+import pandas as pd
+
+df = pd.read_csv("../data/train.csv")
+print df.head()
+		    </code></pre>
+		<img src="images/df_head.png"/>
 		<aside class="notes">
-			No matter what type of data format you're working with, you can load it into a dataframe.  Both R and the python package pandas have this type of data structure, which is pretty much a table.  You have rows, and columns and headers, like your data has.  Here's an example of a pandas data frame.  Pandas also comes with built-in functions to describe your data.
+			No matter what type of data format you're working with, you can load it into a dataframe.  Both R and the python package pandas have this type of data structure, which is pretty much a table.  You have rows, and columns and headers, like your data has.  Here's an example of a pandas data frame.
 		</aside>
 	</section>
+
 	<section>
-		Plotting
-		plot
+		<h2>Summary Statistics</h2>
+			<pre><code data-trim contenteditable>
+import pandas as pd
+
+df = pd.read_csv("../data/train.csv")
+print df.head()
+print df.dtypes
+print df['Age'].describe()
+		    </code></pre>
 		<aside class="notes">
-			Another way to explore your data is through plots.  There are some things that may be hard to see from summary statistics, but very obvious from a graph, like outliers and seasonality.  Matplotlib is a python package for plotting data.
+			One of the first things I like to do is explore the data with summary statistics.  There are a lot of built-in functions to help you with this.  You can use head to check out the first few rows.  You can use dtypes to tell you the data types of each column.  You can select a particular row and describe it, which tells you things like count, mean, max, min.
 		</aside>
 	</section>
+
 	<section>
-	  Data Issues: typos, missing data, redundant data, format issues, outliers
-	  <aside class="notes">
-		  While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
+		<h2>Plotting</h2>
+		<img src="images/ex_plots.png">
+		<aside class="notes">
+			Another way to explore your data is through plots.  There are some things that may be hard to see from summary statistics, but very obvious from a graph, like outliers and seasonality.  There are a lot of packages for plotting.  Some of the more popular ones are ggplot for R and matplotlib for python.
+		</aside>
 	</section>
+
 	<section>
-	  Example Data:
-	  Small group discussion
+	  	<h2>Example Data</h2>
+	  	<img src="images/group_ex_data.png">
 	  <aside class="notes">
 	  		Now we're going to do a little small group exercise.  You can work with the person next to you.  Here is an example of some data with issues.  We'll give you about 5 minutes to look at it and come up with some issues that you can see.
 	  </aside>
+	</section>
+
+	<section>
+	  	<h2>Data Issues</h2>
+	  		<ul>
+	  			<li>Typos</li>
+	  			<li>Missing data</li>
+	  			<li>Redundant data</li>
+	  			<li>Formatting</li>
+	  			<li>Outliers</li>
+	  		</ul>
+	  <aside class="notes">
+		  While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
 	</section>
 
 	<section data-background="#40E0D0">
