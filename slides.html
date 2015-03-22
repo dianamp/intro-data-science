@@ -234,7 +234,7 @@ print df['Age'].describe()
 	</section>
 
 	<section>
-	  <h2> TODO: wine dataset</h2>
+	  <img src="images/titanic_screenshot.png">
 	  <aside class="notes">
 	    Ask: is this prescriptive, predictive, etc? Supervised?
 	  </aside>
@@ -258,38 +258,205 @@ print df['Age'].describe()
 	</section>
 
 	<section>
-	  diagram of supervised learning
+	  <img src="images/supervised_learning_diagram.png">
 	</section>
 	  
 	<section>
-	  <h1>Back to wine...</h1>
+	  <h2>But where do we find this $h$?</h2>
+	  This is the process of doing predictive modeling
 	</section>
 
 	<section>
-	  <h2>We have our goal...now what?</h2>
+	  <h2>Predicting Survival on the Titanic</h2>
+	  <ol>
+	    <li>Clean and explore the data</li>
+	    <li>Come up with new features</li>
+	    <li>Split data into training and test</li>
+	    <li>Tune the model and parameters using cross-validation</li>
+	    <li>Compare model results</li>
+	  </ol>
+	  <aside class="notes">
+	    Why split into training and test? For generalization, and avoiding overfitting.
+	  </aside>
 	</section>
 
 	<section>
-	  Picking a model
-	  List a bunch of models	  
-	  Model we chose for this data set
+	  <section>
+	    <h2>Step 2: Feature Engineering</h2>
+	    <img src="images/titanic_feat_eng_before.png">
+	    <aside class="notes">
+	      Small group activity: brainstorm some features
+	    </aside>
+	  </section>
+
+	  <section>
+	    <h3>Extract honorific from the Name feature
+	      <pre><code>title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", 
+				  titanic$Name)
+titanic$Title <- as.factor(title)
+unique(titanic$Title)
+ [1] "Mr"           "Mrs"          "Miss"        
+ [4] "Master"       "Don"          "Rev"         
+ [7] "Dr"           "Mme"          "Ms"          
+[10] "Major"        "Lady"         "Sir"         
+[13] "Mlle"         "Col"          "Capt"        
+[16] "the Countess" "Jonkheer"    
+</code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Family Size, Per Person Fare, Deck, Level</h3>
+	    <pre><code>  ## Family consolidates siblings and spouses (SibSp) plus
+  ## parents and children (Parch) into one feature
+  data$Family <- data$SibSp + data$Parch
+  ## Fare.pp attempts to adjust group purchases by size of family
+  data$Fare.pp <- data$Fare/(data$Family + 1)
+  ## First character in Cabin number represents the Deck 
+  data$Deck <- substring(data$Cabin, 1, 1)
+  data$Deck[ which( is.na(data$Deck ))] <- "UNK"
+  data$Deck <- as.factor(data$Deck)
+  ## Odd-numbered cabins were reportedly on the port side of the ship
+  ## Even-numbered cabins assigned Side="starboard"
+  cabin.last.digit <- str_sub(data$Cabin, -1)
+  data$Side <- "UNK"
+  data$Side[which(isEven(cabin.last.digit))] <- "port"
+  data$Side[which(isOdd(cabin.last.digit))] <- "starboard"
+  data$Side <- as.factor(data$Side)
+</code></pre>
+	  </section>
 	</section>
 
 	<section>
-	  Training
-	  Feature engineering
-	  Feature selection
-	  training and test set
-	  cross validation for parameter tuning
-	  overfitting
-	  Results for example
+	  <h2>Step 3: Split data into training and test</h2>
+	  <pre><code>require('caret')
+set.seed(99)
+trainI <- createDataPartition(y = titanic$Fate, p = .80, list = FALSE) 
+training <- titanic[ trainI,]
+test <- titanic[-trainI,]</pre></code>
 	</section>
 
 	<section>
-	  <h2>Feature Engineering</h2>
-	  TODO: find time series data example, and do a small-group activity to brainstorm features
+
+	  <section>
+	    <h2>Step 4: Tune the model and parameters using cross-validation</h2>
+	    <p class="fragment">Which model?</p>
+	    <span class="fragment">
+	      <table style="background-color:lightblue">
+		<tbody>
+		  <tr>
+		    <td>Classification Tree</td>
+		    <td>Regression Tree</td>
+		  </tr>
+		  <tr>
+		    <td>Random Forest</td>
+		    <td>Linear Regression</td>
+		  </tr>
+		  <tr>
+		    <td>Support Vector Machine</td>
+		    <td>Logistic Regression</td>
+		  </tr>
+		  <tr>
+		    <td>Boosting</td>
+		    <td>K-Nearest Neighbors</td>
+		  </tr>
+		  <tr>
+		    <td>Naive Bayes</td>
+		    <td>Neural Network</td>
+		  </tr>
+	      </table>
+	    </span>
+	  </section>
+
+	  <section>
+	    <h2>Train a Decision Tree</h2>
+	    <pre><code>ctrl <- trainControl(method = "repeatedcv", repeats = 3,
+		classProbs = TRUE,
+                summaryFunction = twoClassSummary)
+tree1 <- train(Fate ~ ., data = training,
+                method = "rpart",
+                metric = "ROC",
+                trControl = ctrl)</code></pre>
+	  </section>
+
+	  <section>
+	    <img src="images/titanic_class_tree.svg">
+	  </section>
+
+	  <section>
+	    <h2>k-fold cross-validation</h2>
+	    TODO: diagram
+	  </section>
+
+	  <section>
+	    <h2>Accuracy and ROC</h2>
+	    <img src="images/confusion_matrix_wiki.png">
+	  </section>
+
+	  <section>
+	    <h2>Random Forest</h2>
+	    <pre><code>rf.grid <- data.frame(.mtry = c(2, 3))
+
+randomForest <- train(Fate ~ ., 
+                 data = train.munged,
+                 method = "rf",
+                 ntree = 1000,
+                 tuneLength = 5,
+                 metric = "ROC",
+                 tuneGrid = rf.grid,
+                 trControl = ctrl)</code></pre>
+	  </section>
 	</section>
 
+	<section>
+	  <section>
+	    <h2>Step 5: Let's Compare the Models</h2>
+	  </section>
+
+	  <section>
+	    <h2>Classification Tree</h2>
+	      <pre><code>pred_class <- predict(dtree, newdata=testdata, type="raw")
+truth_class <- testdata$Fate
+confusionMatrix(pred_class, truth_class)
+
+	  Confusion Matrix and Statistics
+
+          Reference
+Prediction Perished Survived
+  Perished      100       17
+  Survived        9       51
+                                        
+               Accuracy : 0.853         
+                 95% CI : (0.792, 0.902)
+                                        
+            Sensitivity : 0.917         
+            Specificity : 0.750</code></pre>      
+	  </section>                                  
+	  
+	  <section>
+	    <h2>Random Forest</h2>
+	    <pre><code>pred_class <- predict(randomForest, newdata=test, type="raw")
+truth_class <- test$Fate
+confusionMatrix(pred_class, truth_class)
+
+	  Confusion Matrix and Statistics
+
+          Reference
+Prediction Perished Survived
+  Perished      101       12
+  Survived        8       56
+                                       
+               Accuracy : 0.887        
+                 95% CI : (0.831, 0.93)
+                                       
+            Sensitivity : 0.927        
+            Specificity : 0.824</code></pre>
+	  </section>
+	</section>
+
+	<section>
+	  TODO: Cat picture/Summary
+	</section>
+	
 	<section>
 	  <h1>Testing and Experimentation</h1>
 	</section>

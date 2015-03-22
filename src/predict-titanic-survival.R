@@ -9,7 +9,7 @@ titanic$Pclass <- as.factor(titanic$Pclass)
 # Fix missing values
 
 ## extract honorific (i.e. title) from the Name feature
-titanic$Title <- as.factor(gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", data$Name))
+titanic$Title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", titanic$Name)
 
 unique(titanic$Title)
 #[1] "Mr"     "Mrs"     "Miss"    "Master"        "Don"        "Rev"
@@ -50,6 +50,23 @@ imputeMedian <- function(impute.var, filter.var, var.levels) {
 ## list of titles with missing Age value(s) requiring imputation
 titanic$Age <- imputeMedian(titanic$Age, titanic$Title, c("Dr", "Master", "Miss", "Mr", "Mrs"))
 
+## function for assigning a new title value to old title(s) 
+changeTitles <- function(data, old.titles, new.title) {
+  for (honorific in old.titles) {
+    data$Title[ which( data$Title == honorific)] <- new.title
+  }
+  return (data$Title)
+}
+## Title consolidation
+titanic$Title <- changeTitles(titanic, 
+                              c("Capt", "Col", "Don", "Dr", 
+                                "Jonkheer", "Lady", "Major", 
+                                "Rev", "Sir"),
+                              "Noble")
+titanic$Title <- changeTitles(titanic, c("the Countess", "Ms"), "Mrs")
+titanic$Title <- changeTitles(titanic, c("Mlle", "Mme"), "Miss")
+titanic$Title <- as.factor(titanic$Title)
+
 # Replace 2 missing Embarked values with median
 summary(titanic$Embarked)
 titanic$Embarked[which(is.na(titanic$Embarked))] <- 'S'
@@ -58,6 +75,9 @@ titanic$Embarked[which(is.na(titanic$Embarked))] <- 'S'
 titanic$Fare[ which( titanic$Fare == 0 )] <- NA
 titanic$Fare <- imputeMedian(titanic$Fare, titanic$Pclass, 
                               as.numeric(levels(titanic$Pclass)))
+
+# Replace Cabin NA's with UNK
+titanic$Cabin[ which( is.na(titanic$Cabin))] <- "UNK"
 
 
 require(plyr)     # for the revalue function 
@@ -77,8 +97,8 @@ featureEngrg <- function(data) {
   ## Boat.dibs attempts to capture the "women and children first"
   ## policy in one feature.  Assuming all females plus males under 15
   ## got "dibs' on access to a lifeboat
-  data$Boat.dibs <- "No"
-  data$Boat.dibs[which(data$Sex == "female" | data$Age < 15)] <- "Yes"
+  data$Boat.dibs <- 0
+  data$Boat.dibs[which(data$Sex == "female" | data$Age < 15)] <- 1
   data$Boat.dibs <- as.factor(data$Boat.dibs)
   ## Family consolidates siblings and spouses (SibSp) plus
   ## parents and children (Parch) into one feature
@@ -107,8 +127,98 @@ featureEngrg <- function(data) {
 ## add remaining features to training data frame
 titanic <- featureEngrg(titanic)
 
-features_keep <- c("Fate", "Sex", "Boat.dibs", "Age", "Title", 
-                 "Class", "Deck", "Side", "Fare", "Fare.pp", 
+features_keep <- c("Fate", "Sex", "Age", "Title", 
+                 "Class", "Deck", "Side", "Fare", "Fare.pp", "SibSp", "Parch"
                  "Embarked", "Family")
-trainingdata <- titanic[features_keep]
 
+
+##### Modeling
+
+# create training/test set
+require('caret')
+set.seed(99)
+trainI <- createDataPartition(y = titanic$Fate, p = .80, list = FALSE) 
+training <- titanic[ trainI,]
+test <- titanic[-trainI,]
+
+decisionTree <- function(traindata, testdata) {
+  set.seed(67)
+  ctrl <- trainControl(method = "repeatedcv", repeats = 3,
+                       classProbs = TRUE,
+                       summaryFunction = twoClassSummary)
+  dtree1 <- train(Fate ~ ., data = traindata,
+                  method = "rpart",
+                  metric = "ROC",
+                  na.action = na.pass,
+                  trControl = ctrl)
+  
+  pred_class <- predict(dtree1, newdata=testdata, type="raw")
+  truth_class <- testdata$Fate
+  cm <- confusionMatrix(pred_class, truth_class)
+  fancyRpartPlot(dtree1$finalModel)
+  return (cm)
+}
+
+train.original <- titanic[c("Fate", "Pclass", "Name", "Sex", "Age", "SibSp", "Parch", "Fare", "Ticket", "Embarked")]
+train.munged <- titanic[features_keep]
+
+cm <- decisionTree(train.original, test)
+cm
+
+> confusionMatrix(pred_class, truth_class)
+# Confusion Matrix and Statistics
+# 
+# Reference
+# Prediction Perished Survived
+# Perished      100       17
+# Survived        9       51
+# 
+# Accuracy : 0.853         
+# 95% CI : (0.792, 0.902)
+# No Information Rate : 0.616         
+# P-Value [Acc > NIR] : 3.51e-12      
+# 
+# Kappa : 0.683         
+# Mcnemar's Test P-Value : 0.17          
+#                                         
+#             Sensitivity : 0.917         
+#             Specificity : 0.750         
+#          Pos Pred Value : 0.855         
+#          Neg Pred Value : 0.850         
+#              Prevalence : 0.616         
+#          Detection Rate : 0.565         
+#    Detection Prevalence : 0.661         
+#       Balanced Accuracy : 0.834         
+#                                         
+#        'Positive' Class : Perished  
+
+cm <- decisionTree(train.munged, test)
+
+
+# Random forest
+rf.grid <- data.frame(.mtry = c(2, 3))
+set.seed(35)
+randomForest <- train(Fate ~ ., 
+                 data = train.munged,
+                 method = "rf",
+                 ntree = 1000,
+                 tuneLength = 5,
+                 metric = "ROC",
+                 tuneGrid = rf.grid,
+                 trControl = ctrl)
+pred_class <- predict(randomForest, newdata=test, type="raw")
+truth_class <- test$Fate
+cm <- confusionMatrix(pred_class, truth_class)
+cm
+
+# GLM
+set.seed(35)
+glmFit <- train(Fate ~ .,
+                    data = train.munged,
+                    method = "glm",
+                    metric = "ROC",
+                    trControl = ctrl)
+pred_class <- predict(glmFit, newdata=test, type="raw")
+truth_class <- test$Fate
+cm <- confusionMatrix(pred_class, truth_class)
+cm
