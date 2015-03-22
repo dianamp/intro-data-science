@@ -236,7 +236,9 @@ print df['Age'].describe()
 	<section>
 	  <img src="images/titanic_screenshot.png">
 	  <aside class="notes">
-	    Ask: is this prescriptive, predictive, etc? Supervised?
+	    <p>Ask: is this prescriptive, predictive, etc? Supervised?</p>
+	    <p>Which are the features, what is the target?</p>
+	    <p>What is the training set?</p>
 	  </aside>
 	</section>
 
@@ -255,6 +257,13 @@ print df['Age'].describe()
 	    <li>categorical (classification)</li>
 	  </ul>
 	  </span>
+	  <aside class="notes">
+	    <p>x metric: Age</p>
+	    <p>x ordinal: class</p>
+	    <p>x categorical: sex, embarkment port</p>
+	    <p>y categorical: predict survival</p>
+	    <p>y continuous: predict sale price of house</p>
+	  </aside>
 	</section>
 
 	<section>
@@ -384,7 +393,7 @@ tree1 <- train(Fate ~ ., data = training,
 
 	  <section>
 	    <h2>k-fold cross-validation</h2>
-	    TODO: diagram
+	    <img src="images/cross_validation.svg">
 	  </section>
 
 	  <section>
@@ -454,7 +463,17 @@ Prediction Perished Survived
 	</section>
 
 	<section>
-	  TODO: Cat picture/Summary
+	  <h2>Supervised Learning Summary</h2>
+	  <ol>
+	    <li>Clean and explore the data</li>
+	    <li>Come up with new features</li>
+	    <li>Split data into training and test</li>
+	    <li>Tune the model and parameters using cross-validation</li>
+	    <li>Compare model results</li>
+	  </ol>
+	  <aside class="notes">
+	    This is an iterative process, with data cleaning and feature engineering being the most time and creativity-intensive
+	  </aside>
 	</section>
 	
 	<section>
