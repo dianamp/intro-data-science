@@ -230,15 +230,15 @@ print df['Age'].describe()
 	  <table class="center-col1" style="width:100%">
 	    <tr>
 	      <td style="font-weight:bold">$x_i$</td>
-	      <td>features (input variables)</td>
+	      <td style="text-align:left">features (input variables)</td>
 	    </tr>
 	    <tr>
 	      <td>$y_i$</td>
-	      <td>target (output variable)</td>
+	      <td style="text-align:left">target (output variable)</td>
 	    </tr>
 	    <tr>
 	      <td> $ (x_i, y_i), i=1,\ldots,m $ </td>
-	      <td>training set</td>
+	      <td style="text-align:left">training set</td>
 	    </tr>
 	  </table> 
 	  <br>
@@ -257,20 +257,38 @@ print df['Age'].describe()
 	</section>
 
 	<section>
-	  <p>features $x$ can be
-	  <ul>
-	    <li>metric</li>
-	    <li>ordinal</li>
-	    <li>categorical/nominal</li>
-	  </ul>
-	  </p>
-	  <span class="fragment">
-	  <p>target $y$ can be</p>
-	  <ul>
-	    <li>continuous (regression)</li>
-	    <li>categorical (classification)</li>
-	  </ul>
-	  </span>
+	  <table>
+	    <tbody>
+	      <tr>
+		<td colspan=td colspan="2" style="font-size:130%">features $x$ can be</td>
+	      </tr>
+	      <tr>
+		<td>numeric/metric</td>
+		<td style="text-align:left;color:teal">Age: 14, 56, 1</td>
+	      </tr>
+	      <tr>
+		<td>ordinal</td>
+		<td style="text-align:left;color:teal">Ranking: 1st, 2nd, 3rd</td>
+	      </tr>
+	      <tr>
+		<td>categorical/nominal</td>
+		<td style="text-align:left;color:teal">Sex: male/female</td>
+	      </tr>
+	      
+	      <tr>
+		<td colspan=td colspan="2" style="font-size:130%">target $y$ can be</td>
+	      </tr>
+	      <tr>
+		<td>continuous (regression)</td>
+		<td style="text-align:left;color:teal">Housing Price: 500K, 150K, 2MM </td>
+	      </tr>
+	      <tr>
+		<td>categorical (classification)</td>
+		<td style="text-align:left;color:teal">Survival: Perish, Survive </td>
+	      </tr>
+	    </tbody>
+	  </table>
+
 	  <aside class="notes">
 	    <p>x metric: Age</p>
 	    <p>x ordinal: class</p>
@@ -304,17 +322,16 @@ print df['Age'].describe()
 	</section>
 
 	<section>
-	  <section>
-	    <h2>Step 2: Feature Engineering</h2>
-	    <img src="images/titanic_feat_eng_before.png">
-	    <aside class="notes">
-	      Small group activity: brainstorm some features
-	    </aside>
-	  </section>
-
-	  <section>
-	    <h3>Extract honorific from the Name feature
-	      <pre><code>title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", 
+	  <h2>Step 2: Feature Engineering</h2>
+	  <img src="images/titanic_feat_eng_before.png">
+	  <aside class="notes">
+	    Small group activity: brainstorm some features
+	  </aside>
+	</section>
+	
+	<section>
+	  <h3>Extract honorific from the Name feature
+	    <pre><code>title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", 
 				  titanic$Name)
 titanic$Title <- as.factor(title)
 unique(titanic$Title)
@@ -325,11 +342,11 @@ unique(titanic$Title)
 [13] "Mlle"         "Col"          "Capt"        
 [16] "the Countess" "Jonkheer"    
 </code></pre>
-	  </section>
-
-	  <section>
-	    <h3>Family Size, Per Person Fare, Deck, Level</h3>
-	    <pre><code>  ## Family consolidates siblings and spouses (SibSp) plus
+	</section>
+	
+	<section>
+	  <h3>Family Size, Per Person Fare, Deck, Level</h3>
+	  <pre><code>  ## Family consolidates siblings and spouses (SibSp) plus
   ## parents and children (Parch) into one feature
   data$Family <- data$SibSp + data$Parch
   ## Fare.pp attempts to adjust group purchases by size of family
@@ -346,7 +363,6 @@ unique(titanic$Title)
   data$Side[which(isOdd(cabin.last.digit))] <- "starboard"
   data$Side <- as.factor(data$Side)
 </code></pre>
-	  </section>
 	</section>
 
 	<section>
@@ -359,65 +375,63 @@ test <- titanic[-trainI,]</pre></code>
 	</section>
 
 	<section>
-
-	  <section>
-	    <h2>Step 4: Tune the model and parameters using cross-validation</h2>
-	    <p class="fragment">Which model?</p>
-	    <span class="fragment">
-	      <table style="background-color:lightblue">
-		<tbody>
-		  <tr>
-		    <td>Classification Tree</td>
-		    <td>Regression Tree</td>
-		  </tr>
-		  <tr>
-		    <td>Random Forest</td>
-		    <td>Linear Regression</td>
-		  </tr>
-		  <tr>
-		    <td>Support Vector Machine</td>
-		    <td>Logistic Regression</td>
-		  </tr>
-		  <tr>
-		    <td>Boosting</td>
-		    <td>K-Nearest Neighbors</td>
-		  </tr>
-		  <tr>
-		    <td>Naive Bayes</td>
-		    <td>Neural Network</td>
-		  </tr>
-	      </table>
-	    </span>
-	  </section>
-
-	  <section>
-	    <h2>Train a Decision Tree</h2>
-	    <pre><code>ctrl <- trainControl(method = "repeatedcv", repeats = 3,
+	  <h2>Step 4: Tune the model and parameters using cross-validation</h2>
+	  <p class="fragment">Which model?</p>
+	  <span class="fragment">
+	    <table style="background-color:lightblue">
+	      <tbody>
+		<tr>
+		  <td>Classification Tree</td>
+		  <td>Regression Tree</td>
+		</tr>
+		<tr>
+		  <td>Random Forest</td>
+		  <td>Linear Regression</td>
+		</tr>
+		<tr>
+		  <td>Support Vector Machine</td>
+		  <td>Logistic Regression</td>
+		</tr>
+		<tr>
+		  <td>Boosting</td>
+		  <td>K-Nearest Neighbors</td>
+		</tr>
+		<tr>
+		  <td>Naive Bayes</td>
+		  <td>Neural Network</td>
+		</tr>
+	    </table>
+	  </span>
+	</section>
+	
+	<section>
+	  <h2>Train a Decision Tree</h2>
+	  <pre><code>ctrl <- trainControl(method = "repeatedcv", repeats = 3,
 		classProbs = TRUE,
                 summaryFunction = twoClassSummary)
 tree1 <- train(Fate ~ ., data = training,
                 method = "rpart",
                 metric = "ROC",
                 trControl = ctrl)</code></pre>
-	  </section>
+	 </section>
 
-	  <section>
-	    <img src="images/titanic_class_tree.svg">
-	  </section>
+	<section>
+	  <img src="images/titanic_class_tree.svg">
+	</section>
 
-	  <section>
-	    <h2>k-fold cross-validation</h2>
-	    <img src="images/cross_validation.svg">
-	  </section>
+	<section>
+	  <h2>k-fold cross-validation</h2>
+	  <img src="images/cross_validation.svg">
+	</section>
 
-	  <section>
-	    <h2>Accuracy and ROC</h2>
-	    <img src="images/confusion_matrix_wiki.png">
-	  </section>
+	<section>
+	  <h2>Accuracy and ROC</h2>
+	  <img src="images/confusion_matrix_wiki.png">
+	</section>
 
-	  <section>
-	    <h2>Random Forest</h2>
-	    <pre><code>rf.grid <- data.frame(.mtry = c(2, 3))
+	<section>
+	  <h2>Random Forest</h2>
+	  <pre><code>rf.grid <- data.frame(.mtry = c(2, 3))
 
 randomForest <- train(Fate ~ ., 
                  data = train.munged,
@@ -427,7 +441,6 @@ randomForest <- train(Fate ~ .,
                  metric = "ROC",
                  tuneGrid = rf.grid,
                  trControl = ctrl)</code></pre>
-	  </section>
 	</section>
 
 	<section>
