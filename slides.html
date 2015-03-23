@@ -444,13 +444,12 @@ randomForest <- train(Fate ~ .,
 	</section>
 
 	<section>
-	  <section>
-	    <h2>Step 5: Let's Compare the Models</h2>
-	  </section>
-
-	  <section>
-	    <h2>Classification Tree</h2>
-	      <pre><code>pred_class <- predict(dtree, newdata=testdata, type="raw")
+	  <h2>Step 5: Let's Compare the Models</h2>
+	</section>
+	
+	<section>
+	  <h2>Classification Tree</h2>
+	  <pre><code>pred_class <- predict(dtree, newdata=testdata, type="raw")
 truth_class <- testdata$Fate
 confusionMatrix(pred_class, truth_class)
 
@@ -462,15 +461,14 @@ Prediction Perished Survived
   Survived        9       51
                                         
                Accuracy : 0.853         
-                 95% CI : (0.792, 0.902)
                                         
             Sensitivity : 0.917         
             Specificity : 0.750</code></pre>      
-	  </section>                                  
+	 </section>                                  
 	  
-	  <section>
-	    <h2>Random Forest</h2>
-	    <pre><code>pred_class <- predict(randomForest, newdata=test, type="raw")
+	<section>
+	  <h2>Random Forest</h2>
+	  <pre><code>pred_class <- predict(randomForest, newdata=test, type="raw")
 truth_class <- test$Fate
 confusionMatrix(pred_class, truth_class)
 
@@ -482,11 +480,9 @@ Prediction Perished Survived
   Survived        8       56
                                        
                Accuracy : 0.887        
-                 95% CI : (0.831, 0.93)
                                        
             Sensitivity : 0.927        
             Specificity : 0.824</code></pre>
-	  </section>
 	</section>
 
 	<section>
