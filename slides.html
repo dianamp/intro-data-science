@@ -66,6 +66,7 @@
 	  <h2>What is data science?</h2>
 	  <img src="images/Data_Science_VD.png"/>
 	  <p style="font-size:small;text-align:center">Source: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram</p>
+	  <aside class="notes">ASK THE AUDIENCE: Who is a programmer? Scientist/Statistician/Mathematician? Works with data now?</aside>
 	</section>
 	
 	<section>
@@ -211,13 +212,15 @@ print df['Age'].describe()
 
 	<section>
 	  <h2 style="color:teal">Machine Learning</h2>
-	  <h2 style="color:teal">Supervised Learning</h2>
-	  <h2 style="color:teal">Unsupervised Learning</h2>
+	  <h3 class="fragment" style="color:teal">Supervised Learning</h3>
+	  <h3 class="fragment" style="color:teal">Unsupervised Learning</h3>
 	  <h2 class="fragment" style="color:lightcoral">Statistical Modeling</h2>
 	  <h2 class="fragment" style="color:purple">Descriptive, Predictive, and Prescriptive Analytics</h2>
 	  <aside class="notes">
-	    The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
-	    Source: http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
+	    <p>machine learning: study of algorithms that can learn from data</p>
+	    <p>descriptive analytics - majority of what's out there, still useful, good starting point, KPI</p>
+	    <p>The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
+	    Source: http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning</p>
 	  </aside>
 	</section>
 
@@ -226,15 +229,15 @@ print df['Age'].describe()
 	  
 	  <table class="center-col1" style="width:100%">
 	    <tr>
-	      <td>$x^i$</td>
+	      <td style="font-weight:bold">$x_i$</td>
 	      <td>features (input variables)</td>
 	    </tr>
 	    <tr>
-	      <td>$y^i$</td>
+	      <td>$y_i$</td>
 	      <td>target (output variable)</td>
 	    </tr>
 	    <tr>
-	      <td> $ (x^i, y^i), i=1,\ldots,m $ </td>
+	      <td> $ (x_i, y_i), i=1,\ldots,m $ </td>
 	      <td>training set</td>
 	    </tr>
 	  </table> 
