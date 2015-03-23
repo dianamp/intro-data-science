@@ -345,38 +345,35 @@ unique(titanic$Title)
 	</section>
 	
 	<section>
-	  <h3>Family Size, Per Person Fare, Deck, Level</h3>
-	  <pre><code>  ## Family consolidates siblings and spouses (SibSp) plus
-  ## parents and children (Parch) into one feature
-  data$Family <- data$SibSp + data$Parch
-  ## Fare.pp attempts to adjust group purchases by size of family
-  data$Fare.pp <- data$Fare/(data$Family + 1)
-  ## First character in Cabin number represents the Deck 
-  data$Deck <- substring(data$Cabin, 1, 1)
-  data$Deck[ which( is.na(data$Deck ))] <- "UNK"
-  data$Deck <- as.factor(data$Deck)
-  ## Odd-numbered cabins were reportedly on the port side of the ship
-  ## Even-numbered cabins assigned Side="starboard"
-  cabin.last.digit <- str_sub(data$Cabin, -1)
-  data$Side <- "UNK"
-  data$Side[which(isEven(cabin.last.digit))] <- "port"
-  data$Side[which(isOdd(cabin.last.digit))] <- "starboard"
-  data$Side <- as.factor(data$Side)
-</code></pre>
+	  <h3>More New Features</h3>
+	  <p style="font-size:90%">Family combines siblings and spouses with parents and children</p>
+	  <pre><code class="python">data$Family <- data$SibSp + data$Parch</code></pre>
+	  <p style="font-size:90%">Fare.pp attempts to adjust group purchases by size of family</p>
+	  <pre><code class="python">data$Fare.pp <- data$Fare/(data$Family + 1)</code></pre>
+          <p style="font-size:90%">First character in Cabin number represents the Deck</p>
+	  <pre><code class="python">data$Deck <- substring(data$Cabin, 1, 1)
+data$Deck[ which( is.na(data$Deck ))] <- "UNK"
+data$Deck <- as.factor(data$Deck)</code></pre>
+          <p style="font-size:90%">Odd-numbered cabins were reportedly on the port side of the ship, Even-numbered cabins on the starboard side</p>
+	  <pre><code class="python">cabin.last.digit <- str_sub(data$Cabin, -1)
+data$Side <- "UNK"
+data$Side[which(isEven(cabin.last.digit))] <- "port"
+data$Side[which(isOdd(cabin.last.digit))] <- "starboard"</code></pre>
 	</section>
 
 	<section>
 	  <h2>Step 3: Split data into training and test</h2>
 	  <pre><code>require('caret')
 set.seed(99)
+
 trainI <- createDataPartition(y = titanic$Fate, p = .80, list = FALSE) 
 training <- titanic[ trainI,]
 test <- titanic[-trainI,]</pre></code>
 	</section>
 
 	<section>
-	  <h2>Step 4: Tune the model and parameters using cross-validation</h2>
-	  <p class="fragment">Which model?</p>
+	  <h2>Step 4: Train the model using cross-validation</h2>
+	  <p class="fragment" style="font-size:150%">Which model?</p>
 	  <span class="fragment">
 	    <table style="background-color:lightblue">
 	      <tbody>
@@ -406,7 +403,7 @@ test <- titanic[-trainI,]</pre></code>
 	
 	<section>
 	  <h2>Train a Decision Tree</h2>
-	  <pre><code>ctrl <- trainControl(method = "repeatedcv", repeats = 3,
+	  <pre><code>ctrl <- trainControl(method = "cv",
 		classProbs = TRUE,
                 summaryFunction = twoClassSummary)
 tree1 <- train(Fate ~ ., data = training,
@@ -425,16 +422,27 @@ tree1 <- train(Fate ~ ., data = training,
 	</section>
 
 	<section>
-	  <h2>Accuracy and ROC</h2>
-	  <img src="images/confusion_matrix_wiki.png">
+	  <h2>Confusion Matrix</h2>
+	  <img class="fragment" src="images/confusion_matrix.png">
+	  <br>
+	  <br>
+	  <p class="fragment" style="text-align:center;background-color:lavender">Accuracy = $\frac{TP + TN}{TP + TN + FP + FN}$</p>
+	  <aside class="notes">
+	    <p>What are we evaluating during cross-validation?</p>
+	    <p>Accuracy and ROC are biggies for classification. MSE for regression</p>
+	  </aside>
 	</section>
 
 	<section>
 	  <h2>Random Forest</h2>
+	</section>
+
+	<section>
+	  <h2>Train a Random Forest</h2>
 	  <pre><code>rf.grid <- data.frame(.mtry = c(2, 3))
 
 randomForest <- train(Fate ~ ., 
-                 data = train.munged,
+                 data = training,
                  method = "rf",
                  ntree = 1000,
                  tuneLength = 5,
