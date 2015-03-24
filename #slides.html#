@@ -1,0 +1,704 @@
+<!0doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction to Data Science - GDI Boulder</title>
+
+		<meta name="description" content="A workshop introducing Data Science for GDI Boulder">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+	<section>
+	  <h1>Introduction to Data Science</h1>
+	  <h4>Sara Bates & Diana Pfeil</h4>
+	  <h4>March 2015</h4>
+	</section>
+
+	<section>
+	  <h2>Intro to us</h2>
+	</section>
+
+	<section>
+	  <h2>What is data science?</h2>
+	  <img src="images/Data_Science_VD.png"/>
+	  <small>Source: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram</small>
+	</section>
+	
+	<section>
+	  <blockquote>
+	    ...data scientists [need] to <span style="color:magenta">communicate</span> in language that all their stakeholders understand—and to demonstrate the special skills involved in <span style="color:magenta">storytelling with data</span>, whether verbally, visually, or — ideally — both.
+	  </blockquote>
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
+	</section>
+
+	<section>
+	  <blockquote>
+	    ...the dominant trait among data scientists is an <span style="color:magenta">intense curiosity</span> — a desire to go beneath the surface of a problem, find the questions at its heart, and distill them into a very clear set of hypotheses that can be tested. 
+	  </blockquote>
+
+	  - DJ Patil and Thomas Davenport, Data Scientist: The Sexiest Job of the 21st Century, Harvard Business Review
+	  <aside class="notes">
+	    data scientist skills: comminication and curiosity 
+	  </aside>
+	</section>
+
+	<section>
+	  <h1>Why is data science "The Sexist Job of the 21st Century"?</h1>
+	  <aside class="notes">
+	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/
+	    People are saving their data
+	    computing power
+	    scarcity issue beacuse the field is new
+	    big demand because applicable to every industry
+	    fun
+	  </aside>
+	</section>
+
+	<section>
+	  <h1>What is Big Data?</h1>
+	  <p>Implications: distributed systems, distributed databases, map reduce</p>
+	  <aside class="notes">
+	    Definition: when you have more data than can be worked with on your laptop
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>What do data scientists do?</h2>
+	  <ul>
+	    <li>Exploratory data analysis</li>
+	    <li>predictive analytics and machine learning</li>
+	    <li>A/B testing, etc</li>
+	    <li>Data communication and visualization</li>
+	  </ul>
+	</section>
+
+	<section>
+	  <h1>Exploratory data analysis</h1>
+	</section>
+
+	<section>
+	  Data formats
+	  <p> screen shot? </p>
+	  <aside class="notes">
+	    Let's start with the data.  There are a number of different formats your data can be in.  These include the ever-present excel spreadsheet, a csv (comma-separated values) file, a tsv (tab-separated values) file, JSON, and more.
+	  </aside>
+	</section>
+
+	<section>
+	  Databases:
+	  Relational, noSQL, distributed, graph, in-memory
+	  <aside class="notes">
+	    The format of your data might depend on its source.  There are many different types of databases.  One common type is a relational database, which focuses on the relationships between the data.  Examples include mySQL, SQL Server, MS Access, PostgreSQL.  This type of database requires normalization, which means that different related tables are joined (linked) so that there is no redundancy.  While this helps with data integrity, it can make the database requests slow.  An alternative would be a noSQL database, such as MongoDB, Redis, Apache Cassandra, HBase.  They do not require normalized data and therefore are known for being very fast.
+	  </aside>
+	</section>
+	<section>
+		Dataframes:
+		samples pandas code to load in data and describe
+		<aside class="notes">
+			No matter what type of data format you're working with, you can load it into a dataframe.  Both R and the python package pandas have this type of data structure, which is pretty much a table.  You have rows, and columns and headers, like your data has.  Here's an example of a pandas data frame.  Pandas also comes with built-in functions to describe your data.
+		</aside>
+	</section>
+	<section>
+		Plotting
+		plot
+		<aside class="notes">
+			Another way to explore your data is through plots.  There are some things that may be hard to see from summary statistics, but very obvious from a graph, like outliers and seasonality.  Matplotlib is a python package for plotting data.
+		</aside>
+	</section>
+	<section>
+	  Data Issues: typos, missing data, redundant data, format issues, outliers
+	  <aside class="notes">
+		  While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
+	</section>
+	<section>
+	  Example Data:
+	  Small group discussion
+	  <aside class="notes">
+	  		Now we're going to do a little small group exercise.  You can work with the person next to you.  Here is an example of some data with issues.  We'll give you about 5 minutes to look at it and come up with some issues that you can see.
+	  </aside>
+	</section>
+
+<<<<<<< HEAD
+=======
+	<section data-background="#40E0D0">
+	  <h1>Predictive Analytics and Machine Learning</h1>
+	</section>
+
+	<section>
+	  <h2 style="color:teal">Supervised learning</h2>
+	  <h2 style="color:teal">Unsupervised learning</h2>
+	  <h2 style="color:lightcoral">Statistical Modeling</h2>
+	  <h2 style="color:purple">Descriptive, Predictive, and Prescriptive Analytics</h2>
+	  <aside class="notes">
+	    The biggest difference I see between the communities is that statistics emphasizes inference, whereas machine learning emphasized prediction. When you do statistics, you want to infer the process by which data you have was generated. When you do machine learning, you want to know how you can predict what future data will look like w.r.t. some variable.
+	    Source: http://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Supervised Learning</h2>
+	  
+	  <table class="center-col1" style="width:100%">
+	    <tr>
+	      <td>$x^i$</td>
+	      <td>features (input variables)</td>
+	    </tr>
+	    <tr>
+	      <td>$y^i$</td>
+	      <td>target (output variable)</td>
+	    </tr>
+	    <tr>
+	      <td> $ (x^i, y^i), i=1,\ldots,m $ </td>
+	      <td>training set</td>
+	    </tr>
+	  </table> 
+	  <br>
+	  <p class="fragment" style="background-color:lavender">Goal: learn a function
+	    $$h : \mathcal{X} \rightarrow \mathcal{Y}$$ 
+	    such that $h(x)$ is a good predictor of $y$ on <b>new</b> data<p>
+	</section>
+
+	<section>
+	  <h2> TODO: wine dataset</h2>
+	</section>
+>>>>>>> 2d37b9e23cd5422add8472fbaf97635c3d6ea23e
+
+	<section>
+	  <p>features $x$ can be
+	  <ul>
+	    <li>metric</li>
+	    <li>ordinal</li>
+	    <li>categorical/nominal</li>
+	  </ul>
+	  </p>
+	  <span class="fragment">
+	  <p>target $y$ can be</p>
+	  <ul>
+	    <li>continuous (regression)</li>
+	    <li>categorical (classification)</li>
+	  </ul>
+	  </span>
+	</section>
+
+	<section>
+	  diagram of supervised learning
+	</section>
+	  
+	<section>
+	  <h1>Back to wine...</h1>
+	</section>
+
+	<section>
+	  <h2>We have our goal...now what?</h2>
+	</section>
+
+	<section>
+	  Picking a model
+	  List a bunch of models	  
+	  Model we chose for this data set
+	</section>
+
+	<section>
+	  Training
+	  Feature engineering
+	  Feature selection
+	  training and test set
+	  cross validation for parameter tuning
+	  overfitting
+	  Results for example
+	</section>
+
+	<section>
+	  <h1>Testing and Experimentation</h1>
+	</section>
+	<section>
+		<blockquote cite="https://hbr.org/2014/02/ab-testing-and-the-benefits-of-an-experimentation-culture/">
+	    	&ldquo;Modern tech companies have figured out that data is their product. Whether you sell a service, a product, or content, what you really do is create value for your customer base — and every interaction with your product is a measurable amount of value. But the best data-driven companies don’t just passively store and analyze data, they actively generate actionable data by running experiments. The secret to getting value from data is testing, and if you’re looking to grow your online business, implementing well-executed, consistent A/B testing is a necessity.&rdquo;
+	  </blockquote>
+	  <aside class="notes">
+	  		Another important area of data science is experimentation and testing.  This could be done in order to gather the data that you will use to model, or it could be done to test the predictions that your model output.  Or it could be done instead of creating a model.  Here's a quote from a HBR article from last year, that emphasizes the importance of testing, specifically A/B testing.
+	  </aside>
+	</section>
+	<section>
+		What is A/B testing?
+		<br><br>
+		<button>Try now!</button><br>
+		VS. <br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button>
+		<aside class="notes">
+			So what is A/B testing?  A/B testing is an experiementation technique where you show some customers one thing (version A) and other customers another (version B).  It's commonly used in web analytics, where a company would show some percentage of the visitors to its website one layout or color scheme or ad, and others a slightly different one.  You typically want to keep the rest of the content the same, so that you can attribute the difference in click-throughs to the the change you're testing.
+		</aside>
+	</section>
+	<section>
+		What NOT to do
+		<aside class="notes">
+			One of the most important things to keep in mind when A/B testing is when to stop.  Generally, you want to stop testing when you reach a certain level of statistical significance.  However, this should be calculated beforehand.  Often people "peek" at their current significance, and stop when they reach a certain level.  However, this might be influenced by a current streak, for example, so it would be misleading.  So, you should calculate your sample size, based on your desired level of significance, beforehand and do not stop early.
+		</aside>
+	</section>
+	<section>
+		Multi-Armed Bandit
+		<br>
+		<img src="http://www.residentialgolflessons.com/multimedia/gallery/3799_mills-golden-nugget-bandit.jpg">
+		<aside class="notes">
+			One common situation that's related to A/B testing is the multi-armed bandit problem.  The name comes from the idea of a slot machine or "one-armed bandit" having two arms to pull.  You may have some hypothesis of which arm would have the bigger reward, but you need to come up with a strategy that effectively tests your theory and also maximizes the reward.  So in terms of A/B testing in online ads, you would want to choose the perecentage of website visitors to show each ad that provides enough data to give confidence to your findings but also maximize click-throughs in the process.
+
+			There are a number of different strategies you can take here.  The simpliest is called epsilon-greedy, which assigns a fixed percentage (say 90%) of the visitors to the ad that is expected to have the higher reward.  But in order to gain more information about the other ad, you may consider a probability matching strategy, such as the Bayesian bandit strategy.  You can use Bayes Theorem to come up with a 
+		</aside>
+	</section>
+	<section>
+		Multivariate Testing
+		<br><br>
+		<button>Try now!</button><br>
+		VS.<br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button><br>
+		VS. <br>
+		<button style="color: blue;font-weight: bold;font-size: 150%;text-transform: uppercase;">Try now!</button><br>
+		VS.<br>
+		<button style="font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button><br>
+		<aside class="notes">
+			An alternative to A/B testing is multivariate testing.  As the name suggests, multivariate testing tests multiple variables at the same time.  You can use a full factorial method, which would test every combination of the changes, or a partial factorial method, which would only test a fraction of the combinations and infer the rest.  While you can learn more about the effectiveness of each variable, the testing is more complex and requires more data (visitors) than A/B testing, which is sometimes not worth the effort.
+		</aside>
+	</section>
+
+	<section>
+	  Your company is trying to increase click-through rates, and is trying to determine if a red banner drives more clicks than a blue one. How is this done?
+	  Now you have a prediction, how to test?
+	  framing testing with example
+	  What is A/B testing and why would you need it?
+	  EVERYONE uses A/B testing
+	  examples: Amazon, etc
+	  Types/models for A/B testing
+	  one-armed bandit (epsilon, bayesian bandit)
+	  interactive chart (evan miller blog?)
+	  What NOT to do (evan miller)
+	  don’t stop early
+	</section>
+
+	<section>
+	  <h1>Data Communication and Visualization</h1>
+	</section>
+
+	<section>
+	  <h1>Simplify</h1>
+	  <h3>models, explanations, visuals</h3
+	  <aside class="notes">
+	    Communication is critical for data science
+	    Must be able to communicate a model to a customer/non-technical team
+	    If the model does not get used/implemented, it does not add value
+	  </aside>
+	</section>
+	
+	<section>
+	  <h2>Beware of model complexity</h2>
+	  <p>You must be able to explain your model to the CEO</p>
+	  <p>If the model does not get used/implemented, it does not add value</p>
+	</section>
+
+	<section>
+	  <h2>Translate model results into business value/ROI</h2>
+	</section>
+
+	<section>
+	  <h1>Create Great Charts</h1>
+	</section>
+
+	<section>
+	  <blockquote cite="Edward Tufte, the Visual Display of Quantitative Information">Often the most effective way to describe, explore, and summarize a set of numbers - even a very large set - is to look at a picture of those numbers.</blockquote>
+	  -Edward Tufte
+	  The Visual Display of Quantitative Information
+	</section>
+
+	<section>
+	  <table>
+	    <thead>
+	      <tr align="right">
+		<th scope="col" colspan="2">1</th>
+		<th scope="col" colspan="2">2</th>
+		<th scope="col" colspan="2">3</th>
+		<th scope="col" colspan="2">4</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+		<td>x</td>
+		<td>y</td>
+	      <tr>
+	      <tr>
+		<td>10</td>
+		<td>8.04</td>
+		<td>10</td>
+		<td>9.14</td>
+		<td>10</td>
+		<td>7.46</td>
+		<td>8</td>
+		<td>6.58</td>
+	      <tr>
+	      <tr>
+		<td>8</td>
+		<td>6.95</td>
+		<td>8</td>
+		<td>8.14</td>
+		<td>8</td>
+		<td>6.77</td>
+		<td>8</td>
+		<td>5.76</td>
+	      <tr>
+	      <tr>
+		<td>13</td>
+		<td>7.58</td>
+		<td>13</td>
+		<td>8.74</td>
+		<td>13</td>
+		<td>12.74</td>
+		<td>8</td>
+		<td>7.71</td>
+	      <tr>
+	      <tr>
+		<td>9</td>
+		<td>8.81</td>
+		<td>9</td>
+		<td>8.77</td>
+		<td>9</td>
+		<td>7.11</td>
+		<td>8</td>
+		<td>8.84</td>
+	      <tr>
+	      <tr>
+		<td>11</td>
+		<td>8.33</td>
+		<td>11</td>
+		<td>9.26</td>
+		<td>11</td>
+		<td>7.81</td>
+		<td>8</td>
+		<td>8.47</td>
+	      <tr>
+	      <tr>
+		<td>14</td>
+		<td>9.96</td>
+		<td>14</td>
+		<td>8.10</td>
+		<td>14</td>
+		<td>8.84</td>
+		<td>8</td>
+		<td>7.04</td>
+	      <tr>
+              <tr>
+                <td>6</td>
+                <td>7.24</td>
+                <td>6</td>
+                <td>6.13</td>
+                <td>6</td>
+                <td>6.08</td>
+                <td>8</td>
+                <td>5.25</td>
+              <tr>
+              <tr>
+                <td>4</td>
+                <td>4.26</td>
+                <td>4</td>
+                <td>3.1</td>
+                <td>4</td>
+                <td>5.39</td>
+                <td>19</td>
+                <td>12.5</td>
+              <tr>
+              <tr>
+                <td>12</td>
+                <td>10.84</td>
+                <td>12</td>
+                <td>9.13</td>
+                <td>12</td>
+                <td>8.15</td>
+                <td>8</td>
+                <td>5.56</td>
+              <tr>
+              <tr>
+                <td>7</td>
+                <td>4.82</td>
+                <td>7</td>
+                <td>7.26</td>
+                <td>7</td>
+                <td>6.42</td>
+                <td>8</td>
+                <td>7.91</td>
+              <tr>
+              <tr>
+                <td>5</td>
+                <td>5.68</td>
+                <td>5</td>
+                <td>4.74</td>
+                <td>5</td>
+                <td>5.73</td>
+                <td>8</td>
+                <td>6.89</td>
+              <tr>
+	    </tbody>
+	  </table>	  
+	</section>
+
+	<section>
+	  <img src="images/ambscombe_3.svg"/>
+	</section>
+
+	<section>
+	  <h1>Principles of Data Visualization</h1>
+	</section>
+
+	<section>
+	  <h1>Above all else, show the data</h1>
+	  <h2>Draw attention to the data, not the visualization<h2>
+	</section>
+	
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <h1>Use a minimum of ink</h1>
+	  <p>Erase non-data-ink (within reason)</p>
+	  <p>Erase redundant data-ink (within reason)</p>
+	  <p>Forego chartjunk - interior decoration of graphics</p>
+	</section>
+
+	<section>
+	  <h2>TODO:example</h2>
+	</section>
+
+	<section>
+	  <h2>TODO: small multiples</h2>
+	</section>
+
+	<section>
+	  <h1>Avoid creating graphical puzzles</h1>
+	</section>
+
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <h1>Do not distort the data</h1>
+	  <p>Visual representation should be consistent with the numerical representation</p>
+	</section>
+
+	<section>
+	  <h2>TODO: example</h2>
+	</section>
+
+	<section>
+	  <blockquote>Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space.</blockquote>
+	  -Edward Tufte
+	</section>
+
+	<section>
+	  <h2>Our recommended toolset</h2>
+	  <h3 style="color:magenta">This is our opinion!</h3>
+	  <ul>
+	    <li>Python with pandas, numpy, scipy</li>
+	    <li>Unix utilities</li>
+	    <li>Don’t use windows</li>
+	  </ul>
+	  <p>Note to Sara: I'm thinking of scrapping this slide, seems negative</p>
+	  <p>We could scrap, or just discuss commonly used tools (python, R, excel) and pros/cons?</p>
+	</section>
+	
+	<section>
+	  <h2>Resources for becoming a data scientist</h2>
+	  <ul>
+	    <li>Programming<br>
+	      Intro to Python GDI class </li>
+	    <li>Statistics / machine learning / math <br>
+	      Coursera</li>
+	    <li>Domain knowledge<br>
+	      Think, talk to people, be proactive, learn as you go</li>
+	  </ul>
+	</section>
+
+	<section>
+	  <h2>Bonus Material</h2>
+	  <ul>
+	    <li>Hadoop, Map Reduce</li>
+	    <li>Specific learning algorithms: support vector machine, naive bayes, decision tree (classification tree, regression tree), random forest, neural nets, regression (linear, lasso, ridge), logistic regression, recommender systems (collaborative filtering), nearest neighbor, boosting</li>
+	    <li>Clustering</li>
+	    <li>Imbalanced datasets</li>
+	  </ul>
+	</section>
+	  
+        <section>
+	  <p> The next slides are some examples, and we can delete them once we finish the presentation.</p>
+	</section>
+
+	<section>
+	  <p>This shows how to use math font</p>
+	  <p>Inline math typing looks like this: $\sum_x c_ix_i$</p>
+          <p>And math typing can be placed on a separate line like this:</p>
+	  <p>
+               $$\frac{1}{n}\sqrt{e^\frac{1}{n} - e^\frac{1}{n+1}}\sim\frac{1}{n^2}$$
+          </p>
+         </section>
+
+	<section>
+	  <h2>Example bullets</h2>
+	  <ul>
+	    <li>Lambda Expressions</li>
+	    <li>Default Methods / Functional Interface</li>
+	    <li>Streams</li>
+	  </ul>
+	</section>
+
+	<section>
+	  <h2>Example with Code</h2>
+	  <pre><code data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
+  }
+}
+	  </code></pre>
+	  <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+	</section>
+
+	<section>
+	  <h2>Fantastic Ordered List</h2>
+	  <ol>
+	    <li>One is smaller than...</li>
+	    <li>Two is smaller than...</li>
+	    <li>Three!</li>
+	  </ol>
+	</section>
+	
+	<section>
+	  <h2>Tabular Tables</h2>
+	  <table>
+	    <thead>
+	      <tr>
+		<th>Item</th>
+		<th>Value</th>
+		<th>Quantity</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>Apples</td>
+		<td>$1</td>
+		<td>7</td>
+	      <tr>
+	      <tr>
+		<td>Lemonade</td>
+		<td>$2</td>
+		<td>18</td>
+	      <tr>
+	      <tr>
+		<td>Bread</td>
+		<td>$3</td>
+		<td>2</td>
+	      <tr>
+	    </tbody>
+	  </table>
+	</section>
+	
+	<section>
+	  <h2>Clever Quotes</h2>
+	  <p>
+	    These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+	      &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
+	  </p>
+	  <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+	    &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+	    reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+	  </blockquote>
+	</section>
+	
+	<section>
+	  <h2>Speaker View</h2>
+	  <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+	  <p>Press the <em>S</em> key to try it out.</p>
+	  
+	  <aside class="notes">
+	    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+	  </aside>
+	</section>
+	
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+			        fragments: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
