@@ -288,7 +288,7 @@ print df['Age'].describe()
 	<section>
 	  	<h2>Missing Data</h2>
 			<pre><code data-trim contenteditable>
-df = df.drop([Cabin'], axis=1)
+df = df.drop(['Cabin'], axis=1)
 
 med_age = df.Age.median()
 df.Age = df.Age.fillna(med_age)
