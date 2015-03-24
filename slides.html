@@ -51,8 +51,8 @@
 	  <table>
 	    <tbody style="text-align:center">
 	      <tr>
-		<td style="text-align:center"><img width="70%" src="images/diana_photo.png"></td>
-		<td style="text-align:center"><img width="70%" src="images/diana_photo2.png"></td>
+		<td style="text-align:center"><img style="width:300px;height:450px" src="images/sara.png"></td>
+		<td style="text-align:center"><img style="width:300px;height:450px" src="images/diana_photo2.png"></td>
 	      </tr>
 	      <tr>
 		<td style="text-align:center">Sara Bates, @BatesSara</td>
@@ -88,6 +88,7 @@
 
 	<section>
 	  <h2>Why is data scientist &ldquo;The Sexiest Job of the 21st Century&rdquo;?</h2>
+	  <img src="https://bonocle.files.wordpress.com/2012/01/tumblr_ls3tb9dqfp1qf8r8uo1_500.png">
 	  <aside class="notes">
 	    https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/<br>
 	    <ul>
@@ -102,9 +103,10 @@
 
 	<section>
 	  <h2>What is Big Data?</h2>
-	  <p>Implications: distributed systems, distributed databases, map reduce</p>
+	  <img src="https://anonymousbi.files.wordpress.com/2012/11/bigdata-cap-plat-logos.png">
 	  <aside class="notes">
-	    Definition: when you have more data than can be worked with on your laptop
+	    Definition: when you have more data than can be worked with on your laptop<br>
+	    distributed systems, distributed databases, map reduce
 	  </aside>
 	</section>
 
@@ -113,7 +115,7 @@
 	  <ul>
 	    <li>Exploratory data analysis</li>
 	    <li>Predictive analytics and machine learning</li>
-	    <li>Testing and experiementation</li>
+	    <li>Testing and experimentation</li>
 	    <li>Data communication and visualization</li>
 	  </ul>
 	</section>
@@ -130,13 +132,73 @@
 
 	<section data-background="#40E0D0">
 	  <h1>Exploratory Data Analysis</h1>
+	  <aside class="notes">
+	 	The first step for any data science project is to exploratory data analysis (or EDA).  Exploring and understanding your data is crucial for your work to be effective.  If you build a model based on incorrect assumptions about your data, the model will be flawed and you might waste a lot of time trying to figure out why.  So the goal in EDA is to gain a thorough understanding of your data and locate and resolve any potential issues with your data.
+	</section>
+
+	<section>
+	  <h2>Titanic Survivors</h2>
+	  <img src="http://upload.wikimedia.org/wikipedia/commons/6/6e/St%C3%B6wer_Titanic.jpg">
+	  <aside class="notes">
+	  	We're going to be working with data about passengers aboard the Titanic.  This dataset is a very popular dataset for learning data science.  You can download it from kaggle.com, which is a website that hosts data science competitions.  Also, on kaggle, you can find tutorials in R and python and lots of help in the forums.
+	</section>
+
+	<section>
+		<h2>Data Legend</h2>
+		<table align="left">
+	  		<tr>
+	  			<td>survived</td>
+	  			<td>Survival (0 = No; 1 = Yes)</td>
+	  		</tr>
+	  		<tr>
+	  			<td>Pclass</td>
+	  			<td>Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)</td>
+	  		</tr>
+	  		<tr>
+	  			<td>name</td>
+	  			<td>Name</td>
+	  		</tr>
+	  		<tr>
+	  			<td>sex</td>
+	  			<td>Sex</td>
+	  		</tr>
+	  		<tr>
+	  			<td>age</td>
+				<td>Age</td>
+			</tr>
+			<tr>
+				<td>sibsp</td>
+				<td>Number of Siblings/Spouses Aboard</td>
+			</tr>
+			<tr>
+				<td>parch</td>
+				<td>Number of Parents/Children Aboard</td>
+			</tr>
+			<tr>
+				<td>ticket</td>
+				<td>Ticket Number</td>
+			</tr>
+			<tr>
+				<td>fare</td>
+				<td>Passenger Fare</td>
+			</tr>
+			<tr>
+				<td>cabin</td>
+				<td>Cabin</td>
+			</tr>
+			<tr>
+				<td>embarked</td>
+				<td>Port of Embarkation (C = Cherbourg; Q = Queenstown; S = Southampton)</td>
+			</tr>       
+		</table>
 	</section>
 
 	<section>
 	  <h2>Data formats</h2>
 	  <img src="images/csv_format.png"/>
 	  <aside class="notes">
-	    Let's start with the data.  There are a number of different formats your data can be in.  These include the ever-present excel spreadsheet, a csv (comma-separated values) file, a tsv (tab-separated values) file, JSON, and more.
+	    Let's start with the data.  There are a number of different formats your data can be in.  These include the ever-present excel spreadsheet, a csv (comma-separated values) file, a tsv (tab-separated values) file, JSON, and more.<br>
+	    Here's what a csv file would look like.  I used the built-in linux command head to print out the first 10 lines of the file.
 	  </aside>
 	</section>
 
@@ -144,7 +206,7 @@
 	  <h2>Databases</h2>
 	  <img src="images/wordle.png"/>
 	  <aside class="notes">
-	    The format of your data might depend on its source.  There are many different types of databases.  One common type is a relational database, which focuses on the relationships between the data.  Examples include mySQL, SQL Server, MS Access, PostgreSQL.  This type of database requires normalization, which means that different related tables are joined (linked) so that there is no redundancy.  While this helps with data integrity, it can make the database requests slow.  An alternative would be a noSQL database, such as MongoDB, Redis, Apache Cassandra, HBase.  They do not require normalized data and therefore are known for being very fast.
+	    The format of your data might depend on its source.  There are many different types of databases.  One common type is a relational database, which focuses on the relationships between the data.  Examples include mySQL, SQL Server, MS Access, PostgreSQL.  This type of database requires normalization, which means that different related tables are joined (linked) so that there is no redundancy.  While this helps with data integrity, it can make the database requests slow.  An alternative would be a noSQL database, such as MongoDB, Redis, Apache Cassandra, HBase.  They do not require normalized data and therefore are known for being very fast and scalable.  A lot of these can be distributed, meaning that the data is spread across multiple machines.  This would allow you to store lots and lots of data and be able to query very quickly.
 	  </aside>
 	</section>
 
@@ -165,13 +227,11 @@ print df.head()
 	<section>
 		<h2>Summary Statistics</h2>
 			<pre><code data-trim contenteditable>
-import pandas as pd
-
-df = pd.read_csv("../data/train.csv")
-print df.head()
 print df.dtypes
 print df['Age'].describe()
 		    </code></pre>
+		<img src="images/dtypes.png">
+		<img src="images/age_describe.png">
 		<aside class="notes">
 			One of the first things I like to do is explore the data with summary statistics.  There are a lot of built-in functions to help you with this.  You can use head to check out the first few rows.  You can use dtypes to tell you the data types of each column.  You can select a particular row and describe it, which tells you things like count, mean, max, min.
 		</aside>
@@ -186,24 +246,73 @@ print df['Age'].describe()
 	</section>
 
 	<section>
+		<h2>Women and children first?</h2>
+		<img src="images/gender_plot.png">
+		<aside class="notes">
+			
+		</aside>
+	</section>	
+
+	<section>
+		<h2>Women and children first?</h2>
+		<img src="age_box_whiskers.png">
+		<aside class="notes">
+			
+		</aside>
+	</section>	
+
+	<section>
+	  	<h2>Data Issues</h2>
+	  	<ul>
+  			<li>Typos</li>
+  			<li>Missing data</li>
+  			<li>Redundant data</li>
+  			<li>Formatting</li>
+  			<li>Outliers</li>
+	  	</ul>
+	  	<aside class="notes">
+	  		So basically with all the plots and summary stats, we're trying to understand what the data looks like and discover any possible issues.  These issues could include typos, missing data, redundant data, formatting issues, and outliers.  When you see these issues, it should be a red flag, to talk to your data provider about, so you can decide how you want to handle them.
+
+	  		While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
+	  	</aside>
+	</section>
+
+	<section>
 	  	<h2>Example Data</h2>
 	  	<img src="images/group_ex_data.png">
+
 	  <aside class="notes">
 	  		Now we're going to do a little small group exercise.  You can work with the person next to you.  Here is an example of some data with issues.  We'll give you about 5 minutes to look at it and come up with some issues that you can see.
 	  </aside>
 	</section>
 
 	<section>
-	  	<h2>Data Issues</h2>
-	  		<ul>
-	  			<li>Typos</li>
-	  			<li>Missing data</li>
-	  			<li>Redundant data</li>
-	  			<li>Formatting</li>
-	  			<li>Outliers</li>
-	  		</ul>
-	  <aside class="notes">
-		  While you're exploring your data, you may notice some issues.  There may be typos, missing data, redundant data, format issues, or outliers.  When you notice these issues, the first step is to discuss with data provider.  You want to know things like how the data was collected, what exactly it is (sometimes the column names are misleading), if any of the data is stale or deprecated (sometimes one column was deprecated, but left in database, and replaced by a more accurate column).  This information will help you decide how to handle the various issues with the data.
+	  	<h2>Missing Data</h2>
+			<pre><code data-trim contenteditable>
+df = df.drop([Cabin'], axis=1)
+
+med_age = df.Age.median()
+df.Age = df.Age.fillna(med_age)
+		    </code></pre>
+	  	<aside class="notes">
+	  		Lots of missing data in cabin column.  But, not an obvious replacement.  Also, probably highly correlated to class and ticket fare.  So we'll disregard for now.  We can always add it back in later.<br>
+
+	  		Next, we have to handle the missing data in the age column.  This is one that may have some significance, based on our plots, so we want to leave it in.  We could simply drop the rows that have an NA, but it might skew our data, depending on the reason the age wasn't obtained.  Another option is to replace it with a value.  Here's an example of how we would find the median age and replace the NAs with that value.
+		</aside>
+	</section>
+
+	<section>
+	  	<h2>Formatting & Typos</h2>
+			<pre><code data-trim contenteditable>
+df['Fare'][19] = 7.2250
+
+df = df.drop(['Ticket'], axis=1)
+		    </code></pre>
+	  	<aside class="notes">
+	  		We found a potential typo in the fare of one of our passengers, so let's say we discussed it with our data provider and she researched it and confirmed it was a typo and the decimal place was in the wrong place.  So, we can just replace that cell with the correct value. <br>
+
+	  		Another potential issue with our data was the formatting of the ticket column.  It kind of seems to be all over the place.  So we could try to standardize it, or extract some information from it.  But in this case, it's not obvious that it'll add a lot of info to our model, so we'll start out ignoring it.  We can always add it back in later to refine our model.
+		</aside>
 	</section>
 
 	<section data-background="#40E0D0">
@@ -522,25 +631,23 @@ Prediction Perished Survived
 	</section>
 
 	<section>
-		<section>
-			<h2>What is A/B testing?</h2>
-			<button>Try now!</button><br>
-			VS. <br>
-			<button style="color: magenta;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button>
-			<aside class="notes">
-				So what is A/B testing?  A/B testing is an experiementation technique where you show some customers one thing (version A) and other customers another (version B).  It's commonly used in web analytics, where a company would show some percentage of the visitors to its website one layout or color scheme or ad, and others a different one.  You typically want to keep the rest of the content the same, so that you can attribute the difference in click-throughs to the the change you're testing.
-			</aside>
-		</section>
-	
-		<section>
-			<h2>Multi-Armed Bandit</h2>
-			<img src="http://www.residentialgolflessons.com/multimedia/gallery/3799_mills-golden-nugget-bandit.jpg">
-			<aside class="notes">
-				One common situation that's related to A/B testing is the multi-armed bandit problem.  The name comes from the idea of a slot machine or "one-armed bandit" having two arms to pull.  You may have some hypothesis of which arm would have the bigger reward, but you need to come up with a strategy that effectively tests your theory and also maximizes the reward.  So in terms of A/B testing in online ads, you would want to choose the perecentage of website visitors to show each ad that provides enough data to give confidence to your findings but also maximize click-throughs in the process.
+		<h2>What is A/B testing?</h2>
+		<button>Try now!</button><br>
+		VS. <br>
+		<button style="color: magenta;font-weight: bold;font-size: 150%;text-transform: uppercase;">Free Trial!</button>
+		<aside class="notes">
+			So what is A/B testing?  A/B testing is an experiementation technique where you show some customers one thing (version A) and other customers another (version B).  It's commonly used in web analytics, where a company would show some percentage of the visitors to its website one layout or color scheme or ad, and others a different one.  You typically want to keep the rest of the content the same, so that you can attribute the difference in click-throughs to the the change you're testing.
+		</aside>
+	</section>
 
-				There are a number of different strategies you can take here.  The simpliest is called epsilon-greedy, which assigns a fixed percentage (say 90%) of the visitors to the ad that is expected to have the higher reward.  But in order to gain more information about the other ad, you may consider a probability matching strategy, such as the Bayesian bandit strategy.  You can use Bayes Theorem to come up with a prior probability, that's your starting point.  And it updates based on each new data point.
-			</aside>
-		</section>
+	<section>
+		<h2>Multi-Armed Bandit</h2>
+		<img src="http://www.residentialgolflessons.com/multimedia/gallery/3799_mills-golden-nugget-bandit.jpg">
+		<aside class="notes">
+			One common situation that's related to A/B testing is the multi-armed bandit problem.  The name comes from the idea of a slot machine or "one-armed bandit" having two arms to pull.  You may have some hypothesis of which arm would have the bigger reward, but you need to come up with a strategy that effectively tests your theory and also maximizes the reward.  So in terms of A/B testing in online ads, you would want to choose the perecentage of website visitors to show each ad that provides enough data to give confidence to your findings but also maximize click-throughs in the process.
+
+			There are a number of different strategies you can take here.  The simpliest is called epsilon-greedy, which assigns a fixed percentage (say 90%) of the visitors to the ad that is expected to have the higher reward.  But in order to gain more information about the other ad, you may consider a probability matching strategy, such as the Bayesian bandit strategy.  You can use Bayes Theorem to come up with a prior probability, that's your starting point.  And it updates based on each new data point.
+		</aside>
 	</section>
 
 	<section>

@@ -26,9 +26,32 @@ df = pd.read_csv("../data/train.csv")
 #print df.dtypes
 #print df['Age'].describe()
 
+
+sex =df.groupby(['Sex', 'Survived']).size().unstack()
+sex = sex.reindex(index=sex.index[::-1])
+x_lab = ['Male', 'Female']
+x_locs = [.4, 1.4]
+
+p1 = plt.bar([0, 1], sex[0], color='m', label='Perished')
+p2 = plt.bar([0, 1], sex[1], color='teal', bottom=sex[0], label='Survived')
+plt.xticks(x_locs, x_lab, fontsize=20)
+plt.tick_params(labelsize=20) 
+plt.ylabel('Number of Passengers', fontsize=20)
+plt.legend([p2[0], p1[0]], ['Survived', 'Perished'], fontsize=20)
+#plt.show()
+
+fig = plt.gcf()
+fig.set_size_inches(10,8)
+plt.savefig('../images/gender_plot.png')
+
 df = df.drop(['Ticket','Cabin'], axis=1)
 # Remove NaN values
-df = df.dropna() 
+#df = df.dropna()
+#find median age of 28.0
+med_age = df.Age.median()
+df.Age = df.Age.fillna(med_age)
+
+
 
 # specifies the parameters of our graphs
 fig = plt.figure(figsize=(18,6), dpi=1600) 
@@ -50,7 +73,7 @@ plt.scatter(df.Survived, df.Age, alpha=alpha_scatterplot)
 plt.ylabel("Age")
 # formats the grid line style of our graphs                          
 plt.grid(b=True, which='major', axis='y')  
-plt.title("Survial by Age,  (1 = Survived)")
+plt.title("Survival by Age,  (1 = Survived)")
 
 ax3 = plt.subplot2grid((2,3),(0,2))
 df.Pclass.value_counts().plot(kind="barh", alpha=alpha_bar_chart)
@@ -75,3 +98,20 @@ ax5.set_xlim(-1, len(df.Embarked.value_counts()))
 plt.title("Passengers per boarding location")
 
 plt.savefig('../images/ex_plots.png')
+
+
+fig = plt.figure(figsize=(18,6))
+
+# create a plot of two subsets, male and female, of the survived variable.
+# After we do that we call value_counts() so it can be easily plotted as a bar graph. 
+# 'barh' is just a horizontal bar graph
+ax1 = fig.add_subplot(121)
+df.Survived[df.Sex == 'male'].value_counts().plot(kind='barh',label='Male')
+df.Survived[df.Sex == 'female'].value_counts().plot(kind='barh', color='#ff00ff',label='Female')
+ax1.set_ylim(-1, 2) 
+plt.title("Who survived with respect to gender"); plt.legend(loc='best')
+
+
+
+
+
