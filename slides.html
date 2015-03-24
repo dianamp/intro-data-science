@@ -439,10 +439,10 @@ df = df.drop(['Ticket'], axis=1)
 	</section>
 	
 	<section>
-	  <h3>Extract honorific from the Name feature
-	    <pre><code>title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", 
-				  titanic$Name)
-titanic$Title <- as.factor(title)
+	  <h3>Extract honorific from the Name feature</h3>
+	  <pre><code>titanic$Title <- gsub(".*\\, ([A-Za-z ]+)\\..*", "\\1", titanic$Name)
+titanic$Title <- as.factor(titanic$Title)
+
 unique(titanic$Title)
  [1] "Mr"           "Mrs"          "Miss"        
  [4] "Master"       "Don"          "Rev"         
@@ -457,17 +457,23 @@ unique(titanic$Title)
 	  <h3>More New Features</h3>
 	  <p style="font-size:90%">Family combines siblings and spouses with parents and children</p>
 	  <pre><code class="python">data$Family <- data$SibSp + data$Parch</code></pre>
-	  <p style="font-size:90%">Fare.pp attempts to adjust group purchases by size of family</p>
-	  <pre><code class="python">data$Fare.pp <- data$Fare/(data$Family + 1)</code></pre>
-          <p style="font-size:90%">First character in Cabin number represents the Deck</p>
-	  <pre><code class="python">data$Deck <- substring(data$Cabin, 1, 1)
+	  <span class="fragment">
+	    <p style="font-size:90%">Fare.pp attempts to adjust group purchases by size of family</p>
+	    <pre><code class="python">data$Fare.pp <- data$Fare/(data$Family + 1)</code></pre>
+          </span>
+	  <span class="fragment">
+	    <p style="font-size:90%">First character in Cabin number represents the Deck</p>
+	    <pre><code class="python">data$Deck <- substring(data$Cabin, 1, 1)
 data$Deck[ which( is.na(data$Deck ))] <- "UNK"
 data$Deck <- as.factor(data$Deck)</code></pre>
-          <p style="font-size:90%">Odd-numbered cabins were reportedly on the port side of the ship, Even-numbered cabins on the starboard side</p>
-	  <pre><code class="python">cabin.last.digit <- str_sub(data$Cabin, -1)
+          </span>
+	  <span class="fragment">
+	    <p style="font-size:90%">Odd-numbered cabins were reportedly on the port side of the ship, Even-numbered cabins on the starboard side</p>
+	    <pre><code class="python">cabin.last.digit <- str_sub(data$Cabin, -1)
 data$Side <- "UNK"
 data$Side[which(isEven(cabin.last.digit))] <- "port"
 data$Side[which(isOdd(cabin.last.digit))] <- "starboard"</code></pre>
+          </span>
 	</section>
 
 	<section>
